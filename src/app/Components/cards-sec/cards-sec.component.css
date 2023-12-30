@@ -1,0 +1,15 @@
+.mainbg {
+  background-color: #937dc2;
+}
+.mainColor2 {
+  color: white;
+}
+.textColor {
+  text-shadow: 0 0 1px #937dc2;
+  color: #382c2c;
+}
+#heart {
+  text-shadow: 0 0 3px #937dc2;
+  color: rgb(255, 255, 255);
+  /* font-size: 50px; */
+}
