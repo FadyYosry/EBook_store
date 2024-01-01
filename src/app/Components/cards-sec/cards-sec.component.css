@@ -13,3 +13,26 @@
   color: rgb(255, 255, 255);
   /* font-size: 50px; */
 }
+.circle-button {
+  border: none;
+  background-color: transparent;
+  /* border: 0.5px solid #937dc2;
+
+  border-radius: 30px; Round border */
+  padding: 10px;
+  outline: none; /* Remove outline */
+  box-shadow: none; /* Remove box-shadow */
+}
+
+.circle-button svg {
+  fill: #888; /* Arrow color */
+}
+
+.circle-button:hover svg {
+  fill: #555; /* Hover color */
+  border-color: #555;
+}
+
+.circle-button:active svg {
+  fill: #937dc2; /* Focus and active color */
+}

@@ -6,102 +6,89 @@
   referrerpolicy="no-referrer"
 />
 
-<div class="border border-1 container mt-3">
-  <h4 class="mb-4 textColor">You must it now</h4>
+<div class="container mt-3">
+  <h4 class="mb-4 textColor">More items to explore</h4>
   <!-- My cards -->
-  <div class="m-2 d-flex justify-content-around p-2">
-    <div class="card col-md-3 col-sm-10 m-1">
+  <div
+    class="d-flex justify-content-around p-2 flex-column flex-md-row align-items-center"
+  >
+    <!-- Previous button -->
+    <button class="circle-button" (click)="nextItem()">
+      <svg width="40" height="40" viewBox="0 0 24 24">
+        <path
+          d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- Cards -->
+    @for (item of fourProducts; track $index) {
+    <div class="card col-md-3 col-9 m-1">
       <img
-        src="../../../assets/Images/download.jpg"
+        src="{{ imgSrc + item['img'] }}"
         class="card-img-top"
         alt="..."
-        height="200px"
+        height="230px"
       />
-      <div class="card-body textColor">
-        <h5 class="card-title">Harlem Shuffle</h5>
-        <p class="card-text">Colson Whftehead</p>
-        <div class="d-flex justify-content-between">
-          <div>$26.92</div>
-          <div (click)="fav()">
-            <i class="fa fa-heart" id="heart" ></i>
+      <div class="card textColor p-1" style="height: 200px">
+        <h5 class="card-title">{{ item["title"] }}</h5>
+        <p class="card-text">{{ item["description"] }}</p>
+
+        <div class="col-12 mt-auto p-1">
+          <!-- Use mt-auto to push the button to the bottom -->
+          <div class="d-flex justify-content-between">
+            <div>${{ item["price"] }}</div>
+            <div (click)="fav($event)">
+              <i class="fa fa-heart" id="heart"></i>
+            </div>
           </div>
-        </div>
-        <div class="col-12">
           <a href="#" class="btn mainbg mainColor2 w-100">
-            <i class="fa-solid fa-cart-shopping"></i> Add to cart</a
-          >
+            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+          </a>
         </div>
       </div>
     </div>
-    <div class="card col-md-3 col-sm-10 m-1">
-      <img
-        src="../../../assets/Images/download.jpg"
-        class="card-img-top"
-        alt="..."
-        height="200px"
-      />
-      <div class="card-body textColor">
-        <h5 class="card-title">Harlem Shuffle</h5>
-        <p class="card-text">Colson Whftehead</p>
-        <div class="d-flex justify-content-between">
-          <div>$26.92</div>
-          <div (click)="fav()">
-            <i class="fa fa-heart" id="heart"></i>
-          </div>
-        </div>
-        <div class="col-12">
-          <a href="#" class="btn mainbg mainColor2 w-100">
-            <i class="fa-solid fa-cart-shopping"></i> Add to cart</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="card col-md-3 col-sm-10 m-1">
-      <img
-        src="../../../assets/Images/download.jpg"
-        class="card-img-top"
-        alt="..."
-        height="200px"
-      />
-      <div class="card-body textColor">
-        <h5 class="card-title">Harlem Shuffle</h5>
-        <p class="card-text">Colson Whftehead</p>
-        <div class="d-flex justify-content-between">
-          <div>$26.92</div>
-          <div (click)="fav()">
-            <i class="fa fa-heart" id="heart" ></i>
-          </div>
-        </div>
-        <div class="col-12">
-          <a href="#" class="btn mainbg mainColor2 w-100">
-            <i class="fa-solid fa-cart-shopping"></i> Add to cart</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="card col-md-3 col-sm-10 m-1">
-      <img
-        src="../../../assets/Images/download.jpg"
-        class="card-img-top"
-        alt="..."
-        height="200px"
-      />
-      <div class="card-body textColor">
-        <h5 class="card-title">Harlem Shuffle</h5>
-        <p class="card-text">Colson Whftehead</p>
-        <div class="d-flex justify-content-between">
-          <div>$26.92</div>
-          <div (click)="fav()">
-            <i class="fa fa-heart" id="heart" ></i>
-          </div>
-        </div>
-        <div class="col-12">
-          <a href="#" class="btn mainbg mainColor2 w-100">
-            <i class="fa-solid fa-cart-shopping"></i> Add to cart</a
-          >
-        </div>
-      </div>
-    </div>
-    
+    }
+
+    <!-- Next button -->
+    <button class="circle-button" (click)="nextItem()">
+      <svg width="40" height="40" viewBox="0 0 24 24">
+        <path
+          d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+        ></path>
+      </svg>
+    </button>
+
+    <!-- Another Style for next and previous button -->
+    <!-- <i class="fa-solid fa-arrow-right" (click)="nextItem()"></i> -->
   </div>
 </div>
+
+<!-- Testing -->
+<!-- 
+<hr />
+<h1>Test</h1>
+@for (item of fourProducts; track $index) {
+  <div class="card col-md-3 col-10 m-1">
+    <img src="{{ imgSrc+item['img'] }}" class="card-img-top" alt="..." height="230px" />
+    <div class="card-body textColor">
+      <h5 class="card-title">{{ item["title"]  }}</h5>
+      <p class="card-text">{{ cardText }}</p>
+      <div class="d-flex justify-content-between">
+        <div>${{ cardPrice }}</div>
+        <div (click)="fav($event)">
+          <i class="fa fa-heart" id="heart"></i>
+        </div>
+      </div>
+      <div class="col-12">
+        <a href="#" class="btn mainbg mainColor2 w-100">
+          <i class="fa-solid fa-cart-shopping"></i> Add to cart</a
+        >
+      </div>
+    </div>
+  </div>
+<h1>{{ imgSrc+item["img"] }}</h1>
+<h1>{{ item["title"] }}</h1>
+<h1>{{ item["description"] }}</h1>
+<h1>{{ item["price"] }}</h1>
+} -->
