@@ -1,0 +1,260 @@
+*{
+    text-decoration: none;
+}
+#parent{
+    background-color: white !important;
+    border-bottom: 1px solid rgb(147, 125, 194);
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+#parent .searchh {
+
+    width : 33%;
+    margin-left: 30px;
+    position: relative !important;
+
+}
+#parent .searchh .sicon{
+    position: absolute !important;
+    top:41% !important;
+    left: 87% !important;
+
+}
+.ico{
+    font-size: 16;
+}
+.pipe{
+    font-size: 40px;
+    color: rgb(147, 125, 194);
+}
+#parent .content{
+    width: 85%;
+    display: flex;
+}
+#parent .content .b-world{
+    font-size: 18px;
+color: #231F2D;
+    
+    
+}
+#parent .content  .we{
+    width: 50%;
+    color: #C0B3DB;
+}
+#parent .content a{
+    color:rgb(123, 120, 129);
+}
+#parent .content .list{
+    display: flex;
+    margin-left: 10%;
+    justify-content: space-between;
+    width: 80%;
+}
+#parent .content .listp{
+    width: 25% !important;
+    margin-right: 20px;
+    
+    
+
+}
+#parent .content .list li{
+    font-size: 14px;
+}
+#parent .content .icons{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    order: 2;
+ 
+}
+#parent .content .icons .con{
+    font-size: 18px;
+    color: rgb(147, 125, 194);
+}
+#parent .searchh input{
+    background-color: rgb(241, 241, 241);
+}
+/* .second{
+    width: 100%;
+    background-color: aqua;
+    margin-top: 2%;
+
+}
+.two{
+    border-top: 1px solid rgb(147, 125, 194);
+
+
+}
+
+
+.listp2{
+    width: 55%;
+}
+.second .listp2 ul{
+    margin-left: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+} */
+
+.parent2 .content2{
+    width: 85%;
+}
+.parent2{
+    border-bottom: 1px solid rgb(147, 125, 194);
+    background-color: white !important;
+
+    
+}
+.parent2 .content2 ul li{
+    font-size: 14px;
+    color: black;
+}
+.parent2 .content2 ul{
+    width: 64% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.ulparent{
+    width: 100%;
+    display: flex;
+   justify-content: space-between;
+}
+.ph{
+    font-size: 18px;
+    color:  rgb(147, 125, 194)
+}
+.box1{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+}
+.btn1{
+    border: 1px solid rgb(147, 125, 194);
+}
+.boxx{
+    width: 12%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ii{
+    display: none;
+}
+.phone{
+    display: none;
+}
+#parent .content .bahs{
+    display: none;
+}
+.listtt .l1{
+    width: 15% !important;
+    font-size: 12px;
+}
+.listtt .l2{
+    width: 10%;
+}
+.listtt .l3{
+    width: 30;
+}
+.listtt .l4{
+    width:10% ;
+}
+.listtt .l5{
+    width: 35%;
+}
+.listtt li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#parent .content .ss{
+    display: none;
+}
+
+@media (max-width: 767.98px) { 
+.formm{
+    display: none !important;
+}
+.parent2{
+    display: none;
+}
+#parent .content .icons{
+
+    order: 0;
+    width: 15%;
+ 
+}
+
+
+.ii{
+    display: inline;
+}
+.listp{
+    background-color: whitesmoke;
+}
+/* #parent .content .icons{
+    position: absolute;
+    left: 70%;
+    width: 11%;
+} */
+.boxx{
+    width: 25%;
+}
+.phone{
+    display: block;
+}
+
+.bahs{
+    display: block;
+}
+#parent .content{
+    width: 100%;
+}
+.bbb{
+    order: 3;
+}
+.listp{
+    order: 6;
+}
+
+ }
+
+ @media (max-width: 600px){
+
+    .phone{
+        display: none;
+
+    }
+    .content .icons{
+        display: none !important;
+
+    }
+    #parent .content .ss{
+        display: block;
+        color:  rgb(147, 125, 194);
+    }
+    #parent .content .bahs{
+        width: 42%;
+        display: block;
+    }
+    .boxx{
+        width: 32%;
+    }
+
+
+
+
+
+
+
+
+
+ } 
