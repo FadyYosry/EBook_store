@@ -36,3 +36,13 @@
 .circle-button:active svg {
   fill: #937dc2; /* Focus and active color */
 }
+.swiper-button-next, .swiper-button-prev {
+  background-color: #000; /* Change the background color */
+  color: #fff; /* Change the color */
+  padding: 10px; /* Add padding */
+  border-radius: 50%; /* Make the buttons circular */
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px; /* Change the size of the arrow icons */
+}

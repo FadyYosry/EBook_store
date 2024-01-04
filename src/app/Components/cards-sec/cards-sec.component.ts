@@ -1,7 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DemoService } from '../../../Services/demo.service';
 import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
+import { register } from 'swiper/element/bundle';
 
 @Component({
   selector: 'app-cards-sec',
@@ -10,17 +17,12 @@ import { CommonModule } from '@angular/common';
   providers: [DemoService],
   templateUrl: './cards-sec.component.html',
   styleUrl: './cards-sec.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CardsSecComponent {
-  counter = 0;
-  imgSrc = `../../../assets/Images/`;
-  cardTitle = '';
-  cardText = '';
-  cardPrice = '';
-  products: any = {};
-  start = 0;
-  end = 4;
-  fourProducts: [] = [];
+export class CardsSecComponent implements AfterViewInit {
+  
+  proggramingBooks: any = {};
+
   constructor(private client: DemoService) {
     this.getProducts();
   }
@@ -37,34 +39,23 @@ export class CardsSecComponent {
       console.log('Element not found');
     }
   }
-  nextItem() {
-    if (this.start == 0) {
-      this.start = 4;
-      this.end = 8;
-      this.fourProducts = this.products.slice(this.start, this.end);
-      // console.log(this.fourProducts);
-    }else{
-      this.start = 0;
-      this.end = 4;
-      this.fourProducts = this.products.slice(this.start, this.end);
-      // console.log(this.fourProducts);
-
-    }
-
-    // this.counter++;
-  }
+  
   getProducts() {
-    this.client.getProducts().subscribe((data) => {
-      this.products = data;
-      // this.changData(this.counter);
-      this.fourProducts = this.products.slice(this.start, this.end);
-      console.log(this.fourProducts);
-    });
+    this.client.getProgramming().subscribe(
+      (proggraming) => {
+        console.log(proggraming)
+        this.proggramingBooks = proggraming;
+        console.log(this.proggramingBooks[3]['volumeInfo']['title']);
+        console.log(this.proggramingBooks[3]['volumeInfo']['publisher']);
+        console.log(this.proggramingBooks[3]['saleInfo']['price']);
+        console.log(this.proggramingBooks[3]['volumeInfo']['imageLinks']['thumbnail']); 
+      }
+      );
   }
-  changData(c: any) {
-    this.cardTitle = this.products[c]['title'];
-    this.cardText = this.products[c]['description'];
-    this.cardPrice = this.products[c]['price'];
-    this.imgSrc = `../../../assets/Images/${this.products[c]['img']}`;
+
+  @ViewChild('swiperEx') swiperEx?: ElementRef;
+
+  ngAfterViewInit(): void {
+    register();
   }
 }
