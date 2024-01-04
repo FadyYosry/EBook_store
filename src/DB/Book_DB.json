@@ -585,5 +585,59 @@
       "description": "Reusable water bottle for staying hydrated on the go.",
       "price": 12.99
     }
-  ]
+  ],
+  "authors": [
+   {
+     "id": 1,
+     "name": "Eric-Emanual Schmitt",
+     "birth_date": "March 28, 1960",
+     "nationality": "Belgian",
+     "biography": "Eric-Emanual Schmitt is a Belgian author and playwright. He is known for his philosophical and often existential themes in his works. Schmitt's diverse literary contributions include novels, short stories, and plays.",
+     "best_book": {
+       "title": "The Book of Hidden Things",
+       "published_year": 2009,
+       "genre": "Fiction",
+       "description": "The Book of Hidden Things follows the journey of four childhood friends who reunite annually in their hometown in southern Italy. When one of them mysteriously goes missing, the remaining friends embark on a quest to discover the truth behind his disappearance, uncovering secrets and confronting their own buried truths."
+     }
+   },
+   {
+     "id": 2,
+     "name": "Another Author",
+     "birth_date": "January 1, 1980",
+     "nationality": "Unknown",
+     "biography": "A brief biography of another author.",
+     "best_book": {
+       "title": "Best Book Ever",
+       "published_year": 2015,
+       "genre": "Mystery",
+       "description": "A description of the best book by Another Author."
+     }
+   },
+   {
+     "id": 3,
+     "name": "Jane Doe",
+     "birth_date": "December 15, 1975",
+     "nationality": "American",
+     "biography": "Jane Doe is an American author known for her captivating storytelling and imaginative narratives. She has received acclaim for her contributions to the science fiction and fantasy genres.",
+     "best_book": {
+       "title": "The Enchanted Realm",
+       "published_year": 2012,
+       "genre": "Fantasy",
+       "description": "The Enchanted Realm transports readers to a magical world filled with mythical creatures and epic adventures. Jane Doe weaves a tale of courage, friendship, and the enduring power of imagination."
+     }
+   },
+   {
+     "id": 4,
+     "name": "John Smith",
+     "birth_date": "September 10, 1985",
+     "nationality": "British",
+     "biography": "John Smith is a British author and poet. His works explore themes of introspection, nature, and the human experience. Smith's poetry has resonated with readers around the world.",
+     "best_book": {
+       "title": "Echoes of Silence",
+       "published_year": 2018,
+       "genre": "Poetry",
+       "description": "Echoes of Silence is a collection of poignant poems that delve into the depths of human emotions. John Smith's lyrical verses capture the beauty and complexity of life, inviting readers to reflect on their own journeys."
+     }
+   }
+ ]
 }
