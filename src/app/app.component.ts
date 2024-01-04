@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { BookDetailsComponentComponent } from './components/book-details-component/book-details-component.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
+import { BookDetailsComponentComponent } from './Components/book-details-component/book-details-component.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { CardsSecComponent } from './Components/cards-sec/cards-sec.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet ,BookDetailsComponentComponent , HeaderComponent , FooterComponent, AboutUsComponent],
+  imports: [CommonModule, RouterOutlet ,BookDetailsComponentComponent , HeaderComponent , FooterComponent,AboutUsComponent,CardsSecComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
