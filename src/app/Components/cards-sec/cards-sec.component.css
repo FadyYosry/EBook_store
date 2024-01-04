@@ -1,0 +1,48 @@
+.mainbg {
+  background-color: #937dc2;
+}
+.mainColor2 {
+  color: white;
+}
+.textColor {
+  text-shadow: 0 0 1px #937dc2;
+  color: #382c2c;
+}
+#heart {
+  text-shadow: 0 0 3px #937dc2;
+  color: rgb(255, 255, 255);
+  /* font-size: 50px; */
+}
+.circle-button {
+  border: none;
+  background-color: transparent;
+  /* border: 0.5px solid #937dc2;
+
+  border-radius: 30px; Round border */
+  padding: 10px;
+  outline: none; /* Remove outline */
+  box-shadow: none; /* Remove box-shadow */
+}
+
+.circle-button svg {
+  fill: #888; /* Arrow color */
+}
+
+.circle-button:hover svg {
+  fill: #555; /* Hover color */
+  border-color: #555;
+}
+
+.circle-button:active svg {
+  fill: #937dc2; /* Focus and active color */
+}
+.swiper-button-next, .swiper-button-prev {
+  background-color: #000; /* Change the background color */
+  color: #fff; /* Change the color */
+  padding: 10px; /* Add padding */
+  border-radius: 50%; /* Make the buttons circular */
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px; /* Change the size of the arrow icons */
+}

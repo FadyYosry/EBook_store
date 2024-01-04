@@ -1,0 +1,56 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<div class="container mt-3">
+  <h4 class="mb-4 textColor">More items to explore</h4>
+</div>
+
+<hr />
+<br />
+<!-- Cards -->
+<swiper-container
+  initial-slide="0"
+  [navigation]="true"
+  [pagination]="{ type: '', clickable: true }"
+  [autoplay]="false"
+  [keyboard]="false"
+  [slidesPerView]="4"
+  [loop]="false"
+  [spaceBetween]="10"
+  class="swiper-container m-auto"
+  style="width: 80%"
+>
+  <swiper-slide *ngFor="let item of proggramingBooks">
+    <div class="card" style="margin: 0 10%">
+      <img
+        src="{{ item['volumeInfo']['imageLinks']['thumbnail'] }}"
+        class="card-img-top"
+        alt="..."
+        height="300px"
+      />
+      <div class="card textColor p-1" style="height: 200px">
+        <h5 class="card-title">{{ item["volumeInfo"]["title"] }}</h5>
+        <p class="card-text">{{ item["volumeInfo"]["publisher"] }}</p>
+
+        <div class="col-12 mt-auto p-1">
+
+          <div class="d-flex justify-content-between">
+            <div>${{ item["saleInfo"]["price"] }}</div>
+            <div (click)="fav($event)">
+              <i class="fa fa-heart" id="heart"></i>
+            </div>
+          </div>
+          <a href="#" class="btn mainbg mainColor2 w-100">
+            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </swiper-slide>
+</swiper-container>
+<hr />
+<!-- End of cards -->
