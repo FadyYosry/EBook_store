@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { DemoService } from '../../../Services/demo.service';
+import { DemoService } from '../../Services/demo.service';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
