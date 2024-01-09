@@ -18,19 +18,19 @@ private collection=collection(this.fire_store,'cart')
  addToCart(book:Book_module){
   let mybook={
     "numOfBookNeed":0,
-    "title":book.title ,
-    "authors": book.authors,
-    "publisher": book.publisher,
-    "publishedDate": book.publishedDate,
-    "description":book.description,
-    "categories": book.categories,
-    "averageRating": book.averageRating,
-    "contentVersion":book.contentVersion,
+    "title":book.title||null ,
+    "authors": book.authors||null ,
+    "publisher": book.publisher||null ,
+    "publishedDate": book.publishedDate||null ,
+    "description":book.description||null ,
+    "categories": book.categories||null ,
+    "averageRating": book.averageRating||null ,
+    "contentVersion":book.contentVersion||null ,
       "imagesmallThumbnail":book.imagesmallThumbnail,
       "imagethumbnail": book.imagethumbnail ,
-    "language": book.language,
-    "country": book.country,
-    "price": book.price
+    "language": book.language||null ,
+    "country": book.country||null ,
+    "price": book.price||null 
   }
 return of( addDoc(this.collection,mybook));
  }

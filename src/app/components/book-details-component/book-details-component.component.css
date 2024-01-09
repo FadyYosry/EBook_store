@@ -1,14 +1,7 @@
-.sideimage{
-    width: 100% !important;
-height: 130px !important;
-object-fit: fill !important;
-padding: 2px !important;
-box-sizing: border-box !important;
-border: solid 1px rgb(221, 217, 217);
-}
+
 #mainimage{
     width: 100% !important;
-    height: 580px !important;
+    height: 350px !important;
     object-fit: fill !important;
     padding: 2px !important;
     box-sizing: border-box !important;
