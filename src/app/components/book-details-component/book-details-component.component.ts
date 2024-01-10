@@ -7,6 +7,7 @@ import { AsyncPipe } from '@angular/common';
 import { CartService } from '../../Services/cart/cart.service';
 import { FavService } from '../../Services/fav/fav.service';
 import { Firestore } from '@angular/fire/firestore';
+import { Cart_Book_module } from '../../modules/cartBook.module';
 
 
 @Component({
@@ -28,7 +29,7 @@ this.count.update(num=>num+1)
       }
   tocart:boolean=true;
   tofav:boolean=true;
-  book_id='';
+  book_id='SGMOuEWjVAkr905lOYgw';
 book$!:Observable<Book_module>;
 constructor(private fire_store:Firestore,private bookurl:ActivatedRoute,private serve:AllBooksService,private cart:CartService,private fav:FavService){
  this. tocart=true;
@@ -44,12 +45,22 @@ addtofav(book:Book_module){
 this.fav.addToFav(book)
 }
 addtocart(book:Book_module){
-  if(this.tocart){
- this.cart.addToCart(book);
- this.tocart=false
-  }else{
+// this.cart.getAllFromCart().subscribe(
+//  res=>{
+//   for(let y of res)
+//   {
+//     if(y.book_id==this.book_id)
+//   {
+//     this.tocart=false;
+//   break;
 
-    alert("it ia already add ");
-  }
+//   }
+//   }
+  
+//  } 
+// );
+
+
+
 }
 }

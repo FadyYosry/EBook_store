@@ -1,4 +1,5 @@
 export interface Cart_Book_module  {
+  "book_id":string,
     "numOfBookNeed":number,
     "title"?: string,
     "authors"?: String[],

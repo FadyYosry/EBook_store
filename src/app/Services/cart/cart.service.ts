@@ -12,11 +12,12 @@ constructor(private fire_store:Firestore ) { }
 
 private collection=collection(this.fire_store,'cart')
  getAllFromCart(){
-  return collectionData(this.collection,{idField:'id'}) as Observable<Book_module[]>
+  return collectionData(this.collection,{idField:'id'}) as Observable<Cart_Book_module[]>
  }
 
- addToCart(book:Book_module){
+ addToCart(book:Book_module,bookid:string ){
   let mybook={
+    "book_id":bookid,
     "numOfBookNeed":0,
     "title":book.title||null ,
     "authors": book.authors||null ,
