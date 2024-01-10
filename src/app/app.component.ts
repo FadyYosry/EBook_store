@@ -8,6 +8,7 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { CardsSecComponent } from './Components/cards-sec/cards-sec.component';
 import { BookViewComponent } from './Components/book-view/book-view.component';
 import { ReviewComponentComponent } from './Components/review-component/review-component.component';
+import { AddToCartComponent } from './Components/add-to-cart/add-to-cart.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { ReviewComponentComponent } from './Components/review-component/review-c
     CardsSecComponent,
     BookViewComponent,
     ReviewComponentComponent,
+    AddToCartComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
