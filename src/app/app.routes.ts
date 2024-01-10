@@ -6,5 +6,5 @@ import { BookDetailsComponentComponent } from './Components/book-details-compone
 export const routes: Routes = [
     {path:'' , component:BookViewComponent   },
     {path: 'about_us' , component:AboutUsComponent },
-    {path:'details' , component:BookDetailsComponentComponent}
+    {path:'details/:id' , component:BookDetailsComponentComponent}
 ];

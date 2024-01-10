@@ -36,13 +36,18 @@
 .circle-button:active svg {
   fill: #937dc2; /* Focus and active color */
 }
-.swiper-button-next, .swiper-button-prev {
-  background-color: #000; /* Change the background color */
-  color: #fff; /* Change the color */
-  padding: 10px; /* Add padding */
-  border-radius: 50%; /* Make the buttons circular */
+
+a{
+  text-decoration:none;
 }
 
-.swiper-button-next:after, .swiper-button-prev:after {
-  font-size: 20px; /* Change the size of the arrow icons */
+.myCard:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.myCard{
+  margin-block: 10% !important;
+  transition: 0.5s;
 }
