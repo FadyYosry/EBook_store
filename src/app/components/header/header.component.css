@@ -1,6 +1,9 @@
 *{
     text-decoration: none;
 }
+body{
+    z-index: 1;
+}
 #parent{
     background-color: white !important;
     border-bottom: 1px solid rgb(147, 125, 194);
@@ -11,8 +14,8 @@
 
 #parent .searchh {
 
-    width : 33%;
-    margin-left: 30px;
+    width : 100%;
+    margin-left: 0px;
     position: relative !important;
 
 }
@@ -55,10 +58,14 @@ color: #231F2D;
 #parent .content .listp{
     width: 25% !important;
     margin-right: 20px;
+    background-color: white !important;
     
     
 
 }
+
+
+
 #parent .content .list li{
     font-size: 14px;
 }
@@ -74,7 +81,30 @@ color: #231F2D;
     color: rgb(147, 125, 194);
 }
 #parent .searchh input{
-    background-color: rgb(241, 241, 241);
+    background-color: white;
+}
+
+.formm{
+    position: relative;
+}
+
+.formm ul{
+    text-decoration: none;
+    position: absolute;
+    top: 103%;
+    left: -2%;
+    z-index: 4 !important;
+    background-color: whitesmoke;
+    list-style-type: none;
+    border-radius: 5px;
+    width: 100%;
+}
+.formm ul li{
+    border-bottom:1px solid rgb(147, 125, 194);
+    color: rgb(147, 125, 194);
+}
+.formm ul li a{
+    color: rgb(147, 125, 194) !important; 
 }
 /* .second{
     width: 100%;
@@ -178,10 +208,35 @@ color: #231F2D;
 #parent .content .ss{
     display: none;
 }
+/* .content2{
+    display: none;
+}
+.parent2{
+    display: none;
+}
+.menu{
+    z-index: 100;
+    
+
+} */
 
 @media (max-width: 767.98px) { 
-.formm{
+/* .formm{
     display: none !important;
+} */
+#parent .searchh {
+
+    width : 100%;
+    margin-left: 0px;
+    position: relative !important;
+
+}
+#parent .content .listp .formm{
+    border-bottom: 1px solid rgb(147, 125, 194);
+}
+#parent .content .listp ul li{
+    border-bottom: 1px solid rgb(147, 125, 194);
+
 }
 .parent2{
     display: none;
@@ -240,13 +295,17 @@ color: #231F2D;
     #parent .content .ss{
         display: block;
         color:  rgb(147, 125, 194);
+        margin-left: 41%;
     }
     #parent .content .bahs{
         width: 42%;
-        display: block;
+        display: none;
     }
     .boxx{
         width: 32%;
+    }
+    #parent .content .shopicon{
+        margin-left: 200px;
     }
 
 

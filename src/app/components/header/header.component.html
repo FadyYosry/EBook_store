@@ -49,18 +49,23 @@
           <div class="we">we love books</div>
         </div>
 
-          <form class="d-flex searchh form formm" role="search">
-            <input class="form-control me-2" placeholder="type any book here" aria-label="Search">
+          <!-- <form class="d-flex searchh form formm" role="search">
+            <input [(ngModel)]="books"  class="form-control me-2" placeholder="type any book here" aria-label="Search"   (keyup)="sendData($event)">
             <i class="fa-solid fa-magnifying-glass sicon"></i>
-          </form>
+            <ul *ngIf="searchTerm" >
+             <li *ngFor="let book of filterdbooks ">
+              <a style="color: white;" (click)="remove()"  routerLink="details/{{book.id}}">{{book.volumeInfo.title}} </a>
+              </li>
+            </ul>
+          </form> -->
           <div class="bahs"> <i class="fa-solid fa-magnifying-glass sicon"></i></div>
-
+         
           <div class="phone"> <i class="fa-solid fa-phone ph"></i>
             <span>+44587999000</span>
         </div>
         <i class="fa-solid fa-cart-shopping con ss"></i>
           <div class="icons">
-            <i class="fa-solid fa-cart-shopping con "></i>
+            <i class="fa-solid fa-cart-shopping con  "></i>
             <i class="fa-solid fa-pipe con"></i>
             <i class="fa-solid fa-heart con"></i>
             <i class="fa-solid fa-pipe con"></i>
@@ -70,7 +75,17 @@
           </div>
           
           <div class="collapse navbar-collapse listp" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 list">
+           
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 list menu">
+              <li> <form class="d-flex searchh form formm" role="search">
+                <input   class="form-control me-2" placeholder="type any book here" aria-label="Search"   (keyup)="sendData1($event)">
+                <i class="fa-solid fa-magnifying-glass sicon"></i>
+                <ul *ngIf="searchTerm"  class="menu">
+                 <li class="lista"  *ngFor="let book of filterdbooks1 ">
+                  <a   routerLink="details/{{book.id}}" (click)="remove()">{{book.title}}  </a>
+                  </li>
+                </ul>
+              </form></li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" routerLink="">Home</a>
               </li>
@@ -107,6 +122,7 @@
               
               
             </ul>
+           
           
           </div>
           
@@ -188,7 +204,7 @@
             <i class="fa-solid fa-phone ph"></i>
             <span>+44587999000</span>
             
-          <button class="btn btn1" type="submit">request a call</button>
+          <button class="btn btn1" type="submit" (click)="fire()" >request a call</button>
               
         </div>
            
