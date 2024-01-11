@@ -1,17 +1,18 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { DemoService } from '../../Services/demo.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import {
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { AllBooksService } from '../../Services/all_books/allBooks.service';
 import { outputAst } from '@angular/compiler';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule ,NavigationEnd} from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-cards-sec',
@@ -27,14 +28,22 @@ export class CardsSecComponent implements AfterViewInit {
   psychologyBooks: any[] = [];
   scienceBooks: any[] = [];
   YoungAdultFiction: any[] = [];
-  @Output() book = new EventEmitter();
 
   constructor(
     private client: DemoService,
     private allbooks: AllBooksService,
     private route: Router,
     private bookurl: ActivatedRoute,
+    private viewportScroller: ViewportScroller
   ) {
+    this.route.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      if (event.urlAfterRedirects.includes('/details/')) {
+        this.scrollToTop();
+      }
+    });
+
     allbooks.getAllFromAllBooks().subscribe((res: any) => {
       // Define the type of 'res' as 'Book_module[]'
       for (let i = 0; i < res.length; i++) {
@@ -51,6 +60,10 @@ export class CardsSecComponent implements AfterViewInit {
       }
       // console.log(this.computerBooks);
     });
+  }
+  scrollToTop() {
+    // Scroll to the top of the page
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   routing(){
