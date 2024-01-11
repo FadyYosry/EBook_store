@@ -1,6 +1,6 @@
 
-import { Component, OnInit, Signal, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { ActivatedRoute,  Router,  RouterModule } from '@angular/router';
 import { AllBooksService } from '../../Services/all_books/allBooks.service';
 import { Observable } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
@@ -12,8 +12,8 @@ import { CardsSecComponent } from '../cards-sec/cards-sec.component';
 @Component({
   selector: 'app-book-details-component',
   standalone: true,
-  imports: [AsyncPipe,CommonModule,CardsSecComponent],
-  templateUrl: './book-details-component.component.html',
+  imports: [AsyncPipe,CommonModule,CardsSecComponent,RouterModule],
+  templateUrl:'./book-details-component.component.html',
   styleUrl: './book-details-component.component.css',
 })
 export class BookDetailsComponentComponent implements OnInit {
@@ -21,6 +21,7 @@ export class BookDetailsComponentComponent implements OnInit {
 book_id='';
 book$!:Observable<Book_module>;
   constructor(
+    private route:Router,
      bookurl: ActivatedRoute,
     private serve: AllBooksService,
     private cart: CartService,
@@ -63,11 +64,12 @@ book$!:Observable<Book_module>;
    
       }
   
-  // routing(){
-  //   this.route
-  //       .navigate(['/'], { replaceUrl: false })
-  //       .then(() => this.route.navigate(['/details', this.bookurl.snapshot.params['id']]));
-  // }
+  Writereview(){
+    this.route
+        .navigate(['/'], { replaceUrl: false })
+        .then(() => this.route.navigate(['/review', this.book_id]));
+  
+}
 
 addtofav(book:Book_module){
 
