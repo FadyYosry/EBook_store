@@ -103,12 +103,10 @@ this.cart.getAllFromCart().subscribe(
    alert('this item already add to cart')
    flag=false;
   break;
-
   }
-
   }
  if(flag){
-  this.cart.addToCart(book,this.book_id)
+  this.cart.addToCart(book,this.book_id,this.count())
  } 
  } 
 );}

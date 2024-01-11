@@ -15,10 +15,15 @@ private collection=collection(this.fire_store,'cart')
   return collectionData(this.collection,{idField:'id'}) as Observable<Cart_Book_module[]>
  }
 
- addToCart(book:Book_module,bookid:string ){
+ getoneFromCart(id:any){
+  return from(getDoc( doc(this.fire_store,'cart',id))).pipe(
+    map((res)=>res.data()as Cart_Book_module)
+  );
+ }
+ addToCart(book:Book_module,bookid:string,num:number=1 ){
   let mybook={
     "book_id":bookid,
-    "numOfBookNeed":0,
+    "numOfBookNeed":num,
     "discount":book.discount||0,
     "title":book.title||null ,
     "authors": book.authors||null ,

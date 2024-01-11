@@ -1,55 +1,65 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-interface Book {
-  title: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
+import { CartService } from '../../Services/cart/cart.service';
+
+// interface Book {
+//   title: string;
+//   price: number;
+//   image: string;
+//   quantity: number;
+// }
 @Component({
   selector: 'app-add-to-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,AsyncPipe],
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.css',
 })
-export class AddToCartComponent {
-  cartItems: Book[] = [
-    { title: 'Book 1', price: 10, image: 'url_to_image_1', quantity: 1 },
-    { title: 'Book 2', price: 15, image: 'url_to_image_2', quantity: 2 },
-    { title: 'Book 3', price: 20, image: 'url_to_image_3', quantity: 3 },
-    { title: 'Book 4', price: 25, image: 'url_to_image_4', quantity: 4 },
-  ];
+export class AddToCartComponent implements OnInit{
 
-  addToCart(book: Book): void {
-    const existingBook = this.cartItems.find(
-      (item) => item.title === book.title
-    );
-
-    if (existingBook) {
-      existingBook.quantity++;
-    } else {
-      this.cartItems.push({ ...book, quantity: 1 });
-    }
+cartItems:any[]=[]
+constructor(private cart:CartService)
+{}
+  ngOnInit(): void {
+ this.cart.getAllFromCart().subscribe(res=>{
+  this.cartItems=[]
+  for (let i = 0; i < res.length; i++) {
+    this.cartItems.push(res[i]);
+ }});
   }
 
-  removeFromCart(book: Book): void {
-    const existingBook = this.cartItems.find(
-      (item) => item.title === book.title
-    );
 
-    if (existingBook) {
-      if (existingBook.quantity > 1) {
-        existingBook.quantity--;
-      } else {
-        this.removeItem(book);
-      }
-    }
+
+  addToCart(bookid: string): void {
+    this.cart.getoneFromCart(bookid).subscribe(
+      res=>{
+        res.numOfBookNeed=res.numOfBookNeed+1;
+     this.cart.updateBookInToCart(res,bookid)
+    
+     
+      } 
+     );
+   
   }
 
-  removeItem(book: Book): void {
-    this.cartItems = this.cartItems.filter((item) => item.title !== book.title);
+  removeFromCart(bookid:string): void {
+
+    this.cart.getoneFromCart(bookid).subscribe(
+      res=>{
+        if(res.numOfBookNeed>1){
+          res.numOfBookNeed=res.numOfBookNeed-1;
+          this.cart.updateBookInToCart(res,bookid)
+        }
+    
+     
+      } 
+     );
+
+  }
+
+  removeItem(bookid:string): void {
+    this.cart.deleteBookFromCart(bookid)
   }
 
   buy() {}

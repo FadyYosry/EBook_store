@@ -53,7 +53,7 @@ export class CardsSecComponent implements AfterViewInit {
           this.psychologyBooks.push(res[i]);
         } else if (res[i]['categories'] == 'science') {
           this.scienceBooks.push(res[i]);
-        } else if (res[i]['categories'] == 'Young Adult Fiction') {
+        } else if (res[i]['categories'] == 'Story') {
           this.YoungAdultFiction.push(res[i]);
         }
         // console.log(res[i]['categories']);
