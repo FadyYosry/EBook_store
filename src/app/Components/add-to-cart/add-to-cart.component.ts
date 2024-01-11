@@ -9,6 +9,7 @@ import { CartService } from '../../Services/cart/cart.service';
 //   image: string;
 //   quantity: number;
 // }
+
 @Component({
   selector: 'app-add-to-cart',
   standalone: true,
@@ -16,6 +17,7 @@ import { CartService } from '../../Services/cart/cart.service';
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.css',
 })
+
 export class AddToCartComponent implements OnInit{
 
 cartItems:any[]=[]
@@ -26,24 +28,21 @@ constructor(private cart:CartService)
   this.cartItems=[]
   for (let i = 0; i < res.length; i++) {
     this.cartItems.push(res[i]);
- }});
-  }
+ }}); 
+}
 
-
-
-  addToCart(bookid: string): void {
+  addToCart(bookid: string){
     this.cart.getoneFromCart(bookid).subscribe(
       res=>{
         res.numOfBookNeed=res.numOfBookNeed+1;
-     this.cart.updateBookInToCart(res,bookid)
-    
-     
+     this.cart.updateBookInToCart(res,bookid)     
       } 
-     );
+     );}
    
-  }
 
-  removeFromCart(bookid:string): void {
+  
+
+  removeFromCart(bookid:string){
 
     this.cart.getoneFromCart(bookid).subscribe(
       res=>{
@@ -58,9 +57,10 @@ constructor(private cart:CartService)
 
   }
 
-  removeItem(bookid:string): void {
+  removeItem(bookid:string){
     this.cart.deleteBookFromCart(bookid)
   }
 
   buy() {}
+
 }

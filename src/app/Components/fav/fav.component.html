@@ -1,9 +1,6 @@
-
-@if(cartItems){
-@for(book of cartItems ; track book.title){
-
 <div class="container">
   <div
+    *ngFor="let book of cartItems"
     class="card mb-3 mx-auto mt-3"
     style="max-width: 540px"
   >
@@ -22,34 +19,18 @@
           <div class="btn-group" role="group" aria-label="Basic example">
             <button
               type="button"
-              class="btn btn-secondary"
-              (click)="addToCart(book.id)"
-            >
-              +
-            </button>
-            <span class="quantity">{{ book.numOfBookNeed }}</span>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="removeFromCart(book.id)"
-            >
-              -
-            </button>
-            <button
-              type="button"
               class="btn btn-danger"
-              (click)="removeItem(book.id)"
+              (click)="removeItem(book)"
             >
               Remove
             </button>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-}}
+
 <div class="d-flex justify-content-center">
   <button type="button" class="btn btn-primary" (click)="buy()">Buy</button>
 </div>
