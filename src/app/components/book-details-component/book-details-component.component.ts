@@ -7,11 +7,12 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { CartService } from '../../Services/cart/cart.service';
 import { FavService } from '../../Services/fav/fav.service';
 import { Firestore } from '@angular/fire/firestore';
+import { CardsSecComponent } from '../cards-sec/cards-sec.component';
 
 @Component({
   selector: 'app-book-details-component',
   standalone: true,
-  imports: [AsyncPipe,CommonModule],
+  imports: [AsyncPipe,CommonModule,CardsSecComponent],
   templateUrl: './book-details-component.component.html',
   styleUrl: './book-details-component.component.css',
 })
