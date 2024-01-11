@@ -1,12 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-one-author',
   standalone: true,
-  imports: [],
+  imports: [RouterModule,CommonModule],
   templateUrl: './one-author.component.html',
   styleUrl: './one-author.component.css'
 })
 export class OneAuthorComponent {
-  @Input() dataofauthor:any;
+  @Input() dataofbook:any;
+  @Input() book_id:any;
+month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  
 }

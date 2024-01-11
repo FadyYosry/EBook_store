@@ -14,11 +14,13 @@
 <h4 >{{thebook.authors||'UnKnown'}} </h4>
 <div class=" d-flex d-flex-row m-2">
     <span >
-        <i class="fa-sharp fa-solid fa-star"></i>
-        <i class="fa-solid fa-star-sharp-half-stroke"></i>
-        <i class="fa-sharp fa-light fa-star"></i>
-        <i class="fa-sharp fa-light fa-star"></i>
-        <i class="fa-sharp fa-light fa-star"></i>
+      
+           <ng-container *ngFor="let starIndex of getStarsArray(counter); let i = index">
+            <i class="fa" [ngClass]="{'fa-sharp fa-star': i  <= counter && i + 1 !== counter, 'fa-star-half': i + 0.5 === counter, 'fa-star-o': i + 1 > counter}"></i>
+          </ng-container>
+          
+          
+          
     </span>
     <span class="m-2">{{thebook.averageRating||0}} </span>
 </div>

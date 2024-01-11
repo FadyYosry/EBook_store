@@ -3,29 +3,32 @@ import { DemoService } from '../../Services/demo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OneAuthorComponent } from '../one-author/one-author.component';
 import { CommonModule } from '@angular/common';
+import { AllBooksService } from '../../Services/all_books/allBooks.service';
 
 @Component({
   selector: 'app-book-view',
   standalone: true,
   imports: [HttpClientModule,OneAuthorComponent,CommonModule],
-  providers: [DemoService],
+  providers: [AllBooksService],
   templateUrl: './book-view.component.html',
   styleUrl: './book-view.component.css'
 })
 export class BookViewComponent {
-  constructor(private myservice:DemoService){}
-  all_author:any;
+  constructor(private allbooks:AllBooksService){}
+  all_book:any[] = [];
+
   flag:string="active"
   count :number=0;
   ngOnInit(): void {
-console.log(this.all_author)
-   this.myservice.getAllauthor().subscribe({
-     next:(data)=>{this.all_author=data
-      },
-     error:(error)=>{console.log(error)},
-     complete:()=>{console.log("complete")}
 
-   })
+    this.allbooks.getAllFromAllBooks().subscribe((res: any) => {
+      // this.all_book = res;
+      // console.log(this.all_book);
+      for (let i = 0; i < 12; i++) {
+        this.all_book.push( res[i]);
+      }
+     
+    });
      
   }
 
