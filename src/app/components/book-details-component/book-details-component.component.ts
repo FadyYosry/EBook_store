@@ -1,17 +1,18 @@
+
 import { Component, OnInit, Signal, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AllBooksService } from '../../Services/all_books/allBooks.service';
 import { Observable } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { CartService } from '../../Services/cart/cart.service';
 import { FavService } from '../../Services/fav/fav.service';
-
+import { CardsSecComponent } from '../cards-sec/cards-sec.component';
 
 @Component({
   selector: 'app-book-details-component',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe,CommonModule,CardsSecComponent],
   templateUrl: './book-details-component.component.html',
   styleUrl: './book-details-component.component.css',
 })
@@ -33,9 +34,29 @@ book$!:Observable<Book_module>;
   }
  
   count = signal(0);
+  counter:any;
+  getStarsArray(num: number): number[] {
+    const starsArray: number[] = [];
+    for (let i = 0; i <= num; i += 0.5) {
+      starsArray.push(i + 0.5);
+    }
+   
+    return starsArray;
+  }
+  
+  // ngOnChanges(changes: SimpleChanges): void{
+  //   if(changes['book_id'].firstChange==false){
+  //     this.route
+  //     .navigate(['/about_us'], { replaceUrl: false })
+  //     .then(() => this.route.navigate(['/details', this.book_id]));
+
+  //   }
+    
+  // }
   countplus() {
     this.count.update((num) => num + 1);
   }
+
   countmin(){
     if(this.count()>0)
     { this.count.update(num=>num-1)}
@@ -82,6 +103,7 @@ this.cart.getAllFromCart().subscribe(
   break;
 
   }
+
   }
  if(flag){
   this.cart.addToCart(book,this.book_id)

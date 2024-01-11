@@ -1,0 +1,45 @@
+<div *ngFor="let book of cartItems" class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        [src]="book.image"
+        class="img-fluid rounded-start"
+        alt="{{ book.title }}"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text">Price: {{ book.price }}</p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="addToCart(book)"
+          >
+            +
+          </button>
+          <span class="quantity">{{ book.quantity }}</span>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="removeFromCart(book)"
+          >
+            -
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeItem(book)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <button type="button" class="btn btn-primary" (click)="buy()">Buy</button>
+</div>

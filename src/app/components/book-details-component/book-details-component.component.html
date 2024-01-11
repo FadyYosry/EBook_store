@@ -14,29 +14,17 @@
 <h4 >{{book.authors||'UnKnown'}} </h4>
 <div class=" d-flex d-flex-row m-2">
     <span >
-        <i class="fa-sharp fa-solid fa-star"></i>
-        <i class="fa-solid fa-star-sharp-half-stroke"></i>
-        <i class="fa-sharp fa-light fa-star"></i>
-        <i class="fa-sharp fa-light fa-star"></i>
-        <i class="fa-sharp fa-light fa-star"></i>
+      
+           <ng-container *ngFor="let starIndex of getStarsArray(counter); let i = index">
+            <i class="fa" [ngClass]="{'fa-sharp fa-star': i  <= counter && i + 1 !== counter, 'fa-star-half': i + 0.5 === counter, 'fa-star-o': i + 1 > counter}"></i>
+          </ng-container>
+          
+          
+          
     </span>
     <span class="m-2">{{book.averageRating||0}} </span>
 </div>
-<h2 class="mt-3 mb-3">&#x24; {{book.price}} </h2>
-<p>{{book.description}}</p>
- <div class=" d-flex d-flex-row mb-3 ">
-   <input class="bnt btn-outline-secondary  text-center fs-4 fw-bold" type="button" value="-" style="width:15 !important; height:10 !important; border-radius: 100% !important;" (click)="countmin()">
-   <span class="fs-4 ms-3 me-3"> {{count()}} </span>
-   <input class="bnt btn-outline-secondary  text-center  fw-bold" type="button" value="+" style="width:15 !important; height:10 !important; border-radius: 100% !important; " (click)="countplus()">
-  
-</div>  
-<div class="row justify-content-between d-flex d-flex-row m-2">
-    <button type="button" class=" btn btn-primary col-5 text-center " style="background-color: #937DC2 !important;
-    border: 1px solid #937DC2 !important; color: white !important;" (click)="addtocart(book)" >Add to cart</button>
 
- <button type="button" class=" btn btn-primary col-5 text-center " style="background-color: white !important;
- border: 1px solid #937DC2 !important; color: #937DC2 !important; height: 50px !important;" (click)="addtofav(book)">Add to favorite</button>
- </div>
 <hr style="color: #937DC2;"/>
 <div class="row justify-content-between d-flex d-flex-row m-2">
         <div class="col-5">
@@ -53,3 +41,4 @@
 </div>
 </div>
 }
+<app-cards-sec></app-cards-sec>
