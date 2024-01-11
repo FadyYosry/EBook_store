@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { BookDetailsComponentComponent } from './Components/book-details-component/book-details-component.component';
@@ -8,6 +8,7 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { CardsSecComponent } from './Components/cards-sec/cards-sec.component';
 import { BookViewComponent } from './Components/book-view/book-view.component';
 import { ReviewComponentComponent } from './Components/review-component/review-component.component';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -26,4 +27,5 @@ import { ReviewComponentComponent } from './Components/review-component/review-c
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {}
+export class AppComponent  {
+}

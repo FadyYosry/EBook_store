@@ -1,5 +1,6 @@
-export interface Book_module  {
-  "discount"?:number,
+export interface Fav_Book_module  {
+    "book_id":string,
+    "discount"?:number,
       "title"?: string,
       "authors"?: String[],
       "publisher"?: string,
@@ -14,4 +15,3 @@ export interface Book_module  {
       "country"?: string,
       "price"?: string
   }
- 

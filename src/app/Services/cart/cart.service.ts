@@ -19,6 +19,7 @@ private collection=collection(this.fire_store,'cart')
   let mybook={
     "book_id":bookid,
     "numOfBookNeed":0,
+    "discount":book.discount||0,
     "title":book.title||null ,
     "authors": book.authors||null ,
     "publisher": book.publisher||null ,

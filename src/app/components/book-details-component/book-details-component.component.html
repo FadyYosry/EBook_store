@@ -3,15 +3,15 @@
 <div class="row m-2" >
 <div class=" m-auto mb-2 col-lg-6 col-md-6 col-sm-6  ">
         <div>
-            <img src="{{thebook.imagesmallThumbnail}}" class="m-auto" id="mainimage" alt="..." >
+            <img src="{{book.imagesmallThumbnail}}" class="m-auto" id="mainimage" alt="..." >
 
         </div>
     </div>
 </div>    
 <div class="row m-2" >   
 <div class=" mb-2">
-<h1>{{thebook.title||'UnKnown'}}</h1>
-<h4 >{{thebook.authors||'UnKnown'}} </h4>
+<h1>{{book.title||'UnKnown'}}</h1>
+<h4 >{{book.authors||'UnKnown'}} </h4>
 <div class=" d-flex d-flex-row m-2">
     <span >
         <i class="fa-sharp fa-solid fa-star"></i>
@@ -20,10 +20,10 @@
         <i class="fa-sharp fa-light fa-star"></i>
         <i class="fa-sharp fa-light fa-star"></i>
     </span>
-    <span class="m-2">{{thebook.averageRating||0}} </span>
+    <span class="m-2">{{book.averageRating||0}} </span>
 </div>
-<h2 class="mt-3 mb-3">&#x24; {{thebook.price}} </h2>
-<p>{{thebook.description}}</p>
+<h2 class="mt-3 mb-3">&#x24; {{book.price}} </h2>
+<p>{{book.description}}</p>
  <div class=" d-flex d-flex-row mb-3 ">
    <input class="bnt btn-outline-secondary  text-center fs-4 fw-bold" type="button" value="-" style="width:15 !important; height:10 !important; border-radius: 100% !important;" (click)="countmin()">
    <span class="fs-4 ms-3 me-3"> {{count()}} </span>
@@ -40,12 +40,12 @@
 <hr style="color: #937DC2;"/>
 <div class="row justify-content-between d-flex d-flex-row m-2">
         <div class="col-5">
-            <div class="mb-3"> <span style="color: #937DC2;"> Publisher : </span> {{thebook.publisher||'UnKnown'}}</div>
-            <div class="mb-3"><span style="color: #937DC2;"> Language : </span> {{thebook.language||'UnKnown'}}</div>
+            <div class="mb-3"> <span style="color: #937DC2;"> Publisher : </span> {{book.publisher||'UnKnown'}}</div>
+            <div class="mb-3"><span style="color: #937DC2;"> Language : </span> {{book.language||'UnKnown'}}</div>
         </div>
         <div class="col-5">
-            <div class="mb-3"> <span style="color: #937DC2;"> Publish Date : </span> {{thebook.publishedDate||'UnKnown'}}</div>
-            <div class="mb-3"><span style="color: #937DC2;"> category: </span> {{thebook.categories||'UnKnown'}}</div>
+            <div class="mb-3"> <span style="color: #937DC2;"> Publish Date : </span> {{book.publishedDate||'UnKnown'}}</div>
+            <div class="mb-3"><span style="color: #937DC2;"> category: </span> {{book.categories||'UnKnown'}}</div>
         </div>
 </div>
 
