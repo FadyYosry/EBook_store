@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule,ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../Services/cart/cart.service';
@@ -19,10 +19,14 @@ import { CartService } from '../../Services/cart/cart.service';
 })
 
 export class AddToCartComponent implements OnInit{
+  
 
 cartItems:any[]=[]
-constructor(private cart:CartService)
-{}
+constructor(private cart:CartService,private ViewportScroller: ViewportScroller)
+{
+  this.ViewportScroller.scrollToPosition([0, 0]);
+
+}
   ngOnInit(): void {
  this.cart.getAllFromCart().subscribe(res=>{
   this.cartItems=[]

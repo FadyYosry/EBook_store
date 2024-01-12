@@ -4,7 +4,7 @@ import { ActivatedRoute,  Router,  RouterModule } from '@angular/router';
 import { AllBooksService } from '../../Services/all_books/allBooks.service';
 import { Observable } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule ,ViewportScroller} from '@angular/common';
 import { CartService } from '../../Services/cart/cart.service';
 import { FavService } from '../../Services/fav/fav.service';
 import { CardsSecComponent } from '../cards-sec/cards-sec.component';
@@ -26,22 +26,27 @@ book$!:Observable<Book_module>;
     private serve: AllBooksService,
     private cart: CartService,
     private fav: FavService,
+    private ViewportScroller: ViewportScroller
   ) {
    this.book_id=bookurl.snapshot.params['id'];
+   this.ViewportScroller.scrollToPosition([0, 0]);
   }
   
   ngOnInit(): void {
-    this.book$ = this.serve.getOneBook(this.book_id);
 
     this.book_id=this.bookurl.snapshot.params['id'];
+    
      this.book$ = this.serve.getOneBook(this.book_id);
+    
+    this.serve.getOneBook(this.book_id).subscribe((res: any) => {
+      this.counter=res.averageRating;
+    })
      this.bookurl.paramMap.subscribe((params) => {
       const newBookId = params.get('id');
 
       if (newBookId !== this.book_id) {
         // The 'id' parameter has changed
         this.book_id = newBookId || '';
-        console.log("done")
         this.route
         .navigate(['/about_us'], { replaceUrl: false })
         .then(() => this.route.navigate(['/details', this.bookurl.snapshot.params['id']]));
@@ -58,7 +63,7 @@ book$!:Observable<Book_module>;
   counter:any;
   getStarsArray(num: number): number[] {
     const starsArray: number[] = [];
-    for (let i = 0; i <= num; i += 0.5) {
+    for (let i = 0; i < num; i += 0.5) {
       starsArray.push(i + 0.5);
     }
    

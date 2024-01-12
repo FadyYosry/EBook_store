@@ -6,13 +6,19 @@ import {
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { AllBooksService } from '../../Services/all_books/allBooks.service';
-import { outputAst } from '@angular/compiler';
-import { ActivatedRoute, Router, RouterModule ,NavigationEnd} from '@angular/router';
-import { filter } from 'rxjs';
+import {
+  ActivatedRoute,
+  Router,
+  RouterModule,
+  NavigationEnd,
+} from '@angular/router';
+import { Observable, filter } from 'rxjs';
+import { Book_module } from '../../modules/book.module';
+import { CartService } from '../../Services/cart/cart.service';
 
 @Component({
   selector: 'app-cards-sec',
@@ -28,21 +34,22 @@ export class CardsSecComponent implements AfterViewInit {
   psychologyBooks: any[] = [];
   scienceBooks: any[] = [];
   YoungAdultFiction: any[] = [];
+  book$!: Observable<Book_module>;
 
   constructor(
-    private client: DemoService,
     private allbooks: AllBooksService,
     private route: Router,
     private bookurl: ActivatedRoute,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private cart: CartService
   ) {
-    this.route.events.pipe(
-      filter((e): e is NavigationEnd => e instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      if (event.urlAfterRedirects.includes('/details/')) {
-        this.scrollToTop();
-      }
-    });
+    this.route.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.urlAfterRedirects.includes('/details/')) {
+          this.scrollToTop();
+        }
+      });
 
     allbooks.getAllFromAllBooks().subscribe((res: any) => {
       // Define the type of 'res' as 'Book_module[]'
@@ -66,11 +73,13 @@ export class CardsSecComponent implements AfterViewInit {
     this.viewportScroller.scrollToPosition([0, 0]);
   }
 
-  routing(){
+  routing() {
     console.log(this.bookurl.snapshot.params['id']);
     this.route
-        .navigate(['/'], { replaceUrl: false })
-        .then(() => this.route.navigate(['/details', this.bookurl.snapshot.params['id']]));
+      .navigate(['/'], { replaceUrl: false })
+      .then(() =>
+        this.route.navigate(['/details', this.bookurl.snapshot.params['id']])
+      );
   }
   fav(e: Event) {
     const element = e.target as HTMLElement;
@@ -83,6 +92,22 @@ export class CardsSecComponent implements AfterViewInit {
     } else {
       console.log('Element not found');
     }
+  }
+
+  addthistocart(book: Book_module, book_id: string) {
+    this.cart.getAllFromCart().subscribe((res) => {
+      let flag = true;
+      for (let y of res) {
+        if (y.book_id == book_id && flag) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        this.cart.addToCart(book, book_id, 1);
+      }
+    });
+    // console.log(book_id);
   }
 
   @ViewChild('swiperEx') swiperEx?: ElementRef;

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule,ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FavService } from '../../Services/fav/fav.service';
@@ -13,8 +13,10 @@ import { FavService } from '../../Services/fav/fav.service';
 export class FavComponent implements OnInit {
 
   cartItems:any[]=[]
-  constructor(private fav:FavService)
-  {}
+  constructor(private fav:FavService, private ViewportScroller:ViewportScroller)
+  {
+    this.ViewportScroller.scrollToPosition([0, 0]);
+  }
   ngOnInit(): void {
     this.fav.getAllFromFav().subscribe(res=>{
       this.cartItems=[]
