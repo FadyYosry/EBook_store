@@ -98,43 +98,84 @@ book$!:Observable<Book_module>;
 }
 
 addtofav(book:Book_module){
+  alert('this item add to fav')
+let cartItems:any[]=[];
+let flag=true;
 
-  this.fav.getAllFromFav().subscribe(
-    res=>{
-     let flag=true;
-     for(let y of res)
-     {
-       if(y.book_id==this.book_id)
-     {
-      alert('this item already add to fav')
-      flag=false;
-     break;
+  this.fav.getAllFromFav().subscribe(res=>{
+    cartItems=[]
+    for (let i = 0; i < res.length; i++) {
+      cartItems.push(res[i]);
+      if(res[i].book_id ==this.book_id)
+      {
+        flag=false;
+        console.log(res[i].book_id +'  '+this.book_id);
+      }
+   }
+   if(flag){
+    this.fav.addToFav(book,this.book_id)
+   }
+  });
+
+    // this.fav.getAllFromFav().subscribe(
+  //   res=>{
+  //    let flag=true;
+  //    for(let y of res)
+  //    {
+  //      if(y.book_id ===this.book_id)
+  //    {
+  //     console.log(y.book_id);
+  //     alert('this item already add to fav')
+  //     flag=false;
+  //      break;
    
-     }
-     }
-    if(flag){
-     this.fav.addToFav(book,this.book_id)
-    } 
-    } 
-   );}
+  //    }
+  //    }
+  //   if(flag){
+  //    this.fav.addToFav(book,this.book_id)
+  //   } 
+  //   } 
+  //  );
+}
 
 addtocart(book:Book_module){
-this.cart.getAllFromCart().subscribe(
- res=>{
-  let flag=true;
-  for(let y of res)
-  {
-    if(y.book_id==this.book_id)
-  {
-   alert('this item already add to cart')
-   flag=false;
-  break;
-  }
-  }
- if(flag){
-  this.cart.addToCart(book,this.book_id,this.count())
- } 
- } 
-);}
 
+  let cartItems:any[]=[];
+  let flag=true;
+  
+    this.cart.getAllFromCart().subscribe(res=>{
+      cartItems=[]
+      for (let i = 0; i < res.length; i++) {
+        cartItems.push(res[i]);
+        if(res[i].book_id ==this.book_id)
+        {
+          flag=false;
+          console.log(res[i].book_id +'  '+this.book_id);
+        }
+     }
+     if(flag){
+      this.cart.addToCart(book,this.book_id,this.count())
+     }
+    });
+    alert('this item add to cart')
+
+// this.cart.getAllFromCart().subscribe(
+//  res=>{
+//   let flag=true;
+//   for(let y of res)
+//   {
+//     if(y.book_id==this.book_id)
+//   {
+//    alert('this item already add to cart')
+//    flag=false;
+//   break;
+//   }
+//   }
+//  if(flag){
+//   this.cart.addToCart(book,this.book_id,this.count())
+//  } 
+//  } 
+// );
 }
+
+  }
