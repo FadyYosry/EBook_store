@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Firestore, addDoc, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
-import {  of } from 'rxjs';
+import {  Observable, of } from 'rxjs';
+import { review_module } from '../../modules/review.module';
 
 
 @Injectable({
@@ -14,10 +15,10 @@ export class ReviewService {
    getAllReviews(id:string)
    {
     this.collection=collection(this.fire_store,'allbooks/'+id+'/review')
-    return collectionData(this.collection,{idField:'id'})
+    return collectionData(this.collection) as Observable<review_module[]>
    }
   
-   addReview(id:string,myreview:string){
+   addReview(id:string,myreview:object){
     this.collection=collection(this.fire_store,'allbooks/'+id+'/review')
   return of( addDoc(this.collection,myreview));
    }

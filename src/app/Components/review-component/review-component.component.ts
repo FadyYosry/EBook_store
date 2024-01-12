@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ReviewService } from '../../Services/review/review.service';
 
 @Component({
   selector: 'app-review-component',
@@ -10,6 +12,25 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './review-component.component.css',
 })
 export class ReviewComponentComponent {
+  book_id='';
+  allreview:any[]=[];
+  constructor(
+     bookurl: ActivatedRoute,
+    private review: ReviewService,
+  ) {
+   this.book_id=bookurl.snapshot.params['id'];
+  }
+  
+  ngOnInit(): void {
+    this.review.getAllReviews(this.book_id).subscribe(
+      res=>{
+        this.allreview=[]
+        for (let i = 0; i < res.length; i++) {
+          this.allreview.push(res[i]);
+       }
+      }
+    )
+  }
   reviewComment: string = '';
   stars: number[] = [1, 2, 3, 4, 5];
   selectedRating: number = 0;
@@ -22,11 +43,11 @@ export class ReviewComponentComponent {
 
   submitReview(): void {
     if (this.reviewComment && this.selectedRating > 0) {
-      this.savedReviews.push({
+    let myreview=  {
         comment: this.reviewComment,
         rating: this.selectedRating,
-      });
-
+      }
+      this.review.addReview(this.book_id,myreview)
       this.reviewComment = '';
       this.selectedRating = 0;
       this.errorMessage = '';
