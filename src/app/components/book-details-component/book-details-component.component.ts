@@ -22,7 +22,7 @@ book_id='';
 book$!:Observable<Book_module>;
   constructor(
     private route:Router,
-     bookurl: ActivatedRoute,
+    private bookurl: ActivatedRoute,
     private serve: AllBooksService,
     private cart: CartService,
     private fav: FavService,
@@ -32,9 +32,29 @@ book$!:Observable<Book_module>;
   
   ngOnInit(): void {
     this.book$ = this.serve.getOneBook(this.book_id);
+
+    this.book_id=this.bookurl.snapshot.params['id'];
+     this.book$ = this.serve.getOneBook(this.book_id);
+     this.bookurl.paramMap.subscribe((params) => {
+      const newBookId = params.get('id');
+
+      if (newBookId !== this.book_id) {
+        // The 'id' parameter has changed
+        this.book_id = newBookId || '';
+        console.log("done")
+        this.route
+        .navigate(['/about_us'], { replaceUrl: false })
+        .then(() => this.route.navigate(['/details', this.bookurl.snapshot.params['id']]));
+      }
+    })
+
+
+
   }
  
-  count = signal(0);
+  count = signal(1);
+
+
   counter:any;
   getStarsArray(num: number): number[] {
     const starsArray: number[] = [];
@@ -44,6 +64,7 @@ book$!:Observable<Book_module>;
    
     return starsArray;
   }
+  
   
   // ngOnChanges(changes: SimpleChanges): void{
   //   if(changes['book_id'].firstChange==false){
@@ -59,7 +80,7 @@ book$!:Observable<Book_module>;
   }
 
   countmin(){
-    if(this.count()>0)
+    if(this.count()>1)
     { this.count.update(num=>num-1)}
    
       }

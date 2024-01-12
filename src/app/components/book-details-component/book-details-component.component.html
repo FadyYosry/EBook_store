@@ -13,7 +13,7 @@
     <h1>{{book.title||'UnKnown'}}</h1>
     <h4 >{{book.authors||'UnKnown'}} </h4>
     <div class=" d-flex d-flex-row m-2">
-        <!-- <span >
+        <span >
           
                <ng-container *ngFor="let starIndex of getStarsArray(counter); let i = index">
                 <i class="fa" [ngClass]="{'fa-sharp fa-star': i  <= counter && i + 1 !== counter, 'fa-star-half': i + 0.5 === counter, 'fa-star-o': i + 1 > counter}"></i>
@@ -21,8 +21,8 @@
               
               
               
-        </span> -->
-        <span class="m-2">averageRating:  {{book.averageRating||0}} </span>
+        </span>
+        <span class="m-2">{{book.averageRating||0}} </span>
     </div>
     <h2 class="mt-3 mb-3">&#x24; {{book.price}} </h2>
     <p>{{book.description}}</p>
