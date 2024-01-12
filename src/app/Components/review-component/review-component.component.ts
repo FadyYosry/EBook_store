@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule,ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -17,8 +17,10 @@ export class ReviewComponentComponent {
   constructor(
      bookurl: ActivatedRoute,
     private review: ReviewService,
+    private ViewportScroller:ViewportScroller
   ) {
    this.book_id=bookurl.snapshot.params['id'];
+   this.ViewportScroller.scrollToPosition([0, 0]);
   }
   
   ngOnInit(): void {

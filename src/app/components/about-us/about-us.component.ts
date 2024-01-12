@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule,ViewportScroller } from '@angular/common';
 import {
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -6,6 +6,8 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import Swiper from 'swiper';
 import { register } from 'swiper/element/bundle';
 
@@ -18,6 +20,18 @@ import { register } from 'swiper/element/bundle';
   styleUrl: './about-us.component.css',
 })
 export class AboutUsComponent implements AfterViewInit {
+  
+  constructor(private route :Router,private ViewportScroller: ViewportScroller) {
+    // this.route.events.pipe(
+    //   filter((e): e is NavigationEnd => e instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
+    //   if (event.urlAfterRedirects.includes('/details/')) {
+    //     this.scrollToTop();
+    //   }
+    // });
+   this.ViewportScroller.scrollToPosition([0, 0]);
+  }
+  
   swiperData = [
     {
       image: '../../../assets/Images/image1.jpg',

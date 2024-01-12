@@ -12,7 +12,6 @@ import { RouterModule } from '@angular/router';
 export class OneAuthorComponent {
   @Input() dataofbook:any;
   @Input() book_id:any;
-month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
   
 }
