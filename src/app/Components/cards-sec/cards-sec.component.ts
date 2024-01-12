@@ -95,12 +95,14 @@ export class CardsSecComponent implements AfterViewInit {
   }
 
   addthistocart(book: Book_module, book_id: string) {
+    let cartItems: any[] = [];
+    let flag = true;
     this.cart.getAllFromCart().subscribe((res) => {
-      let flag = true;
-      for (let y of res) {
-        if (y.book_id == book_id && flag) {
+      cartItems = [];
+      for (let i = 0; i < res.length; i++) {
+        cartItems.push(res[i]);
+        if (res[i].book_id == book_id) {
           flag = false;
-          break;
         }
       }
       if (flag) {
