@@ -131,6 +131,18 @@ margin-left: 25%;
 .sec1 .social{
     display: none;
 }
+.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+.cat{
+    margin-top: -11px !important ;
+}
+.bbtnn{
+    background-color:rgb(147, 125, 194) ;
+    border: 0px solid transparent;
+    color: white;
+}
 
 
 @media (max-width: 1199.98px) { 
