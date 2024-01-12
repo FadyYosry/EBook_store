@@ -107,6 +107,7 @@ export class CardsSecComponent implements AfterViewInit {
       }
       if (flag) {
         this.cart.addToCart(book, book_id, 1);
+        alert('this item add to cart');
       }
     });
     // console.log(book_id);
