@@ -13,11 +13,11 @@ import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { AddToCartComponent } from './Components/add-to-cart/add-to-cart.component';
 import { FavComponent } from './Components/fav/fav.component';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet ,BookDetailsComponentComponent , HeaderComponent , FooterComponent,AboutUsComponent,CardsSecComponent,BookViewComponent,SpaceComponent , ReviewComponentComponent,AddToCartComponent,FavComponent],
+  imports: [CommonModule, RouterOutlet ,BookDetailsComponentComponent , HeaderComponent , FooterComponent,AboutUsComponent,CardsSecComponent,BookViewComponent,
+    SpaceComponent , ReviewComponentComponent,AddToCartComponent,FavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
