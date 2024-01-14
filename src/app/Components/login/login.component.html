@@ -1,0 +1,55 @@
+<div class="background-gradient">
+  <div class="wrapper">
+    <div class="title-text">
+      <div class="title login">Login Form</div>
+      <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked />
+        <input type="radio" name="slide" id="signup" />
+        <label for="login" class="slide login">Login</label>
+        <label for="signup" class="slide signup">Signup</label>
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+        <form action="#" class="login" #loginForm>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Email Address"
+              [(ngModel)]="loginEmail"
+              name="loginEmail"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="loginPassword"
+              name="loginPassword"
+              required
+              #passwordInput
+            />
+          </div>
+          <div class="field">
+            <label for="showPassword" class="show-password-label">
+              Show Password
+              <input
+                type="checkbox"
+                id="showPassword"
+                (change)="togglePasswordVisibility()"
+              />
+            </label>
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Login" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,14 +13,28 @@ import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { AddToCartComponent } from './Components/add-to-cart/add-to-cart.component';
 import { FavComponent } from './Components/fav/fav.component';
 import { PaypalComponent } from './Components/paypal/paypal.component';
-
+import { LoginComponent } from './Components/login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet ,BookDetailsComponentComponent , HeaderComponent , FooterComponent,AboutUsComponent,CardsSecComponent,BookViewComponent,SpaceComponent , ReviewComponentComponent,AddToCartComponent,FavComponent,PaypalComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    BookDetailsComponentComponent,
+    HeaderComponent,
+    FooterComponent,
+    AboutUsComponent,
+    CardsSecComponent,
+    BookViewComponent,
+    SpaceComponent,
+    ReviewComponentComponent,
+    AddToCartComponent,
+    FavComponent,
+    PaypalComponent,
+    LoginComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent  {
-}
+export class AppComponent {}
