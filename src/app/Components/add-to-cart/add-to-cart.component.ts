@@ -2,6 +2,7 @@ import { AsyncPipe, CommonModule,ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../Services/cart/cart.service';
+import { Router } from '@angular/router';
 
 // interface Book {
 //   title: string;
@@ -20,9 +21,10 @@ import { CartService } from '../../Services/cart/cart.service';
 
 export class AddToCartComponent implements OnInit{
   
-
+cartitem:any;
+ result:number=0;
 cartItems:any[]=[]
-constructor(private cart:CartService,private ViewportScroller: ViewportScroller)
+constructor(private cart:CartService,private ViewportScroller: ViewportScroller,private route:Router)
 {
   this.ViewportScroller.scrollToPosition([0, 0]);
 
@@ -65,6 +67,22 @@ constructor(private cart:CartService,private ViewportScroller: ViewportScroller)
     this.cart.deleteBookFromCart(bookid)
   }
 
-  buy() {}
+  buy() {
+    this.cart.getAllFromCart().subscribe(res=>{
+      this.cartitem=res
+      for (let i = 0; i < this.cartitem.length; i++) {
+        const numOfBookNeed = this.cartitem[i].numOfBookNeed || 0;
+        const price = +this.cartitem[i].price || 0;
+        const discount = this.cartitem[i].discount || 0;
+        if(this.cartitem[i].discount!=0)
+        this.result += numOfBookNeed * price - (discount / 100) * price;     
+        else 
+        this.result += this.cartitem[i].numOfBookNeed * this.cartitem[i].price;
+    }
+    this.route.navigate(['/paypal', this.result]);
+    })
+    
+  
+  }
 
 }
