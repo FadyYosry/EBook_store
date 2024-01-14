@@ -311,14 +311,14 @@ color: #231F2D;
     #parent .content .ss{
         display: block;
         color:  rgb(147, 125, 194);
-        margin-left: 41%;
+        margin-left: 32%;
     }
     #parent .content .bahs{
         width: 42%;
         display: none;
     }
     .boxx{
-        width: 32%;
+        width: 42%;
     }
     #parent .content .shopicon{
         margin-left: 200px;
