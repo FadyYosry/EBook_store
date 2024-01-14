@@ -24,12 +24,16 @@ export class BookViewComponent {
   flag:string="active"
   count :number=0;
   ngOnInit(): void {
+    
 
     this.allbooks.getAllFromAllBooks().subscribe((res: any) => {
-      // this.all_book = res;
-      // console.log(this.all_book);
-      for (let i = 0; i < 12; i++) {
+     
+      for (let i = 0; i <res.length; i++) {
+        // res[i].discount=15;
+        // this.allbooks.updateBook(res[i],res[i].id)
+       if(res[i].discount!==0){
         this.all_book.push( res[i]);
+      }
       }
      
     });
