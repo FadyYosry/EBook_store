@@ -10,8 +10,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-}
+  background: rgb(217,198,231);
+  background: radial-gradient(circle, rgba(217,198,231,1) 0%, rgba(147,125,194,1) 100%);
+ }
 
 body {
   display: flex;
@@ -25,8 +26,8 @@ body {
 }
 .background-gradient {
   min-height: 100vh;
-  background: rgb(217, 198, 231);
-  background: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+  background: rgb(217,198,231);
+  background: radial-gradient(circle, rgba(217,198,231,1) 0%, rgba(147,125,194,1) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +37,7 @@ body {
   overflow: hidden;
   max-width: 1000px;
   margin: 0 auto;
-  background: #e0c3fc;
+  background:white;
   padding: 30px;
   border-radius: 15px;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
@@ -88,7 +89,8 @@ body {
   left: 0;
   z-index: 0;
   border-radius: 15px;
-  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+  background: rgb(72,11,133);
+  background: linear-gradient(90deg, rgba(72,11,133,1) 0%, rgba(147,125,194,1) 35%, rgba(211,195,219,1) 100%);
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 input[type="radio"] {
@@ -183,13 +185,9 @@ form .btn .btn-layer {
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(
-    right,
-    #5e2d79,
-    #2c3d63,
-    #4168a3,
-    #4487b5
-  );
+  background: rgb(51, 15, 87);
+  background: linear-gradient(90deg, rgb(51, 15, 87) 0%, rgba(147,125,194,1) 35%, rgba(211,195,219,1) 100%);
+ 
   border-radius: 15px;
   transition: all 0.4s ease;
 }
@@ -201,8 +199,9 @@ form .btn input[type="submit"] {
   width: 100%;
   z-index: 1;
   position: relative;
-  background: none;
-  border: none;
+  background: rgb(51, 15, 87);
+  background: linear-gradient(90deg, rgb(51, 15, 87) 0%, rgba(147,125,194,1) 35%, rgba(211,195,219,1) 100%);
+  border:  rgb(51, 15, 87);
   color: #fff;
   padding-left: 0;
   border-radius: 15px;
