@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable, from, map } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
 
@@ -20,4 +20,10 @@ export class AllBooksService {
       map((res)=>res.data()as Book_module)
     );
   }
+  
+  updateBook(book:Book_module,id: string){
+    const ref = doc(this.fire_store,'allbooks',id);
+   updateDoc(ref,{...book})
+  }
+
 }

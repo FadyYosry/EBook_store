@@ -61,14 +61,29 @@ a{
 }
 
 .sp1  h5{
-  font-size: 16px;
+  font-size: 13px;
 }
 .sp2  h5{
-  font-size: 16px;
+  font-size: 13px;
 }
 .sp3  h5{
-  font-size: 16px;
+  font-size: 13px;
 }
+/* .sp1  p{
+  font-size: 13px;
+}
+.sp2  p{
+  font-size: 13px;
+}
+.sp3  p{
+  font-size: 13px;
+} */
+.sse p{
+  font-size: 10px;
+  margin-bottom: 0px;
+  height: 53px;
+}
+
 @media (max-width: 1199.98px)  { 
   .sp1{
     display: none;

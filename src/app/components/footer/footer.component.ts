@@ -52,4 +52,14 @@ export class FooterComponent {
 
   }
   }
+  story_navagte() {
+    if (this.currentRoute === '/') {
+      window.scrollTo(2650,2650);
+    } else {
+      this.router.navigate(['/']).then(() => {
+        // window.scrollTo(750,750);
+      });
+
+  }
+  }
 }

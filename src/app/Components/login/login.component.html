@@ -1,0 +1,136 @@
+<div class="background-gradient">
+  <div class="wrapper">
+    <div class="title-text">
+      <div
+        [ngClass]="{
+          title: true,
+          login: currentForm === 'login',
+          signup: currentForm === 'signup'
+        }"
+      >
+        {{ currentForm === "login" ? "Login Form" : "Signup Form" }}
+      </div>
+    </div>
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked />
+        <input type="radio" name="slide" id="signup" />
+        <label for="login" class="slide login" (click)="currentForm = 'login'"
+          >Login</label
+        >
+        <label
+          for="signup"
+          class="slide signup"
+          (click)="currentForm = 'signup'"
+          >Signup</label
+        >
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+        <form
+          *ngIf="currentForm === 'login'"
+          action="#"
+          class="login"
+          #loginForm
+        >
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Email Address"
+              [(ngModel)]="loginEmail"
+              name="loginEmail"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="loginPassword"
+              name="loginPassword"
+              required
+              #passwordInput
+            />
+          </div>
+          <div class="field">
+            <label for="showPassword" class="show-password-label">
+              Show Password
+              <input
+                type="checkbox"
+                id="showPassword"
+                (change)="togglePasswordVisibility()"
+              />
+            </label>
+          </div>
+
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Login" />
+          </div>
+        </form>
+
+        <form
+          *ngIf="currentForm === 'signup'"
+          action="#"
+          class="signup"
+          #signupForm
+        >
+          <div class="field">
+            <input
+              type="text"
+              placeholder="First Name"
+              [(ngModel)]="firstName"
+              name="firstName"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Last Name"
+              [(ngModel)]="lastName"
+              name="lastName"
+              required
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Email Address"
+              [(ngModel)]="signupEmail"
+              name="loginEmail"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="signupPassword"
+              name="loginPassword"
+              required
+              #passwordInput
+            />
+          </div>
+          <div class="field">
+            <label for="showPassword" class="show-password-label">
+              Show Password
+              <input
+                type="checkbox"
+                id="showPassword"
+                (change)="togglePasswordVisibility()"
+              />
+            </label>
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Signup" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

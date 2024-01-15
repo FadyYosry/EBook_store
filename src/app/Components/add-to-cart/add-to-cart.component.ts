@@ -2,7 +2,11 @@ import { AsyncPipe, CommonModule,ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../Services/cart/cart.service';
+
 import { AuthService } from '../../Services/auth/auth.service';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-add-to-cart',
@@ -14,9 +18,13 @@ import { AuthService } from '../../Services/auth/auth.service';
 
 export class AddToCartComponent implements OnInit{
   
+
   user_id:any;
 cartItems:any[]=[]
-constructor(private fire_auth:AuthService,private cart:CartService,private ViewportScroller: ViewportScroller)
+cartitem:any;
+ result:number=0;
+constructor(private fire_auth:AuthService,private cart:CartService,private ViewportScroller: ViewportScroller,private route:Router)
+
 {
   this.user_id=this.fire_auth.myuser;
   console.log("user id ",this.user_id)
@@ -54,8 +62,7 @@ constructor(private fire_auth:AuthService,private cart:CartService,private Viewp
           res.numOfBookNeed=res.numOfBookNeed-1;
           this.cart.updateBookInToCart(res,bookid,this.user_id)
         }
-    
-     
+         
       } 
      );
 
@@ -65,6 +72,25 @@ constructor(private fire_auth:AuthService,private cart:CartService,private Viewp
     this.cart.deleteBookFromCart(bookid,this.user_id)
   }
 
-  buy() {}
+  buy() {
+   if(this.user_id!="notfound")
+   {
+    this.cart.getAllFromCart(this.user_id).subscribe(res=>{
+      this.cartitem=res
+      for (let i = 0; i < this.cartitem.length; i++) {
+        const numOfBookNeed = this.cartitem[i].numOfBookNeed || 0;
+        const price = +this.cartitem[i].price || 0;
+        const discount = this.cartitem[i].discount || 0;
+        if(this.cartitem[i].discount!=0)
+        this.result += numOfBookNeed * price - (discount / 100) * price;     
+        else 
+        this.result += this.cartitem[i].numOfBookNeed * this.cartitem[i].price;
+    }
+    this.route.navigate(['/paypal', this.result]);
+    })
+   }
+    
+  
+  }
 
 }

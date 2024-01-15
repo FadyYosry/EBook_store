@@ -52,3 +52,17 @@
     }
 
 }
+@media (max-width: 460px)  { 
+    .bb{
+        width: 10%;
+        border-radius: 100%;
+        background-color: white;
+        border: 1px solid black;
+        transition: all 0.3s;
+    }
+    .bbo{
+        font-size: 77%;
+        width: 30%;
+    }
+
+}
