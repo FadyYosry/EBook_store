@@ -19,6 +19,7 @@ import {
 import { Observable, filter } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
 import { CartService } from '../../Services/cart/cart.service';
+import { AuthService } from '../../Services/auth/auth.service';
 
 @Component({
   selector: 'app-cards-sec',
@@ -30,19 +31,24 @@ import { CartService } from '../../Services/cart/cart.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CardsSecComponent implements AfterViewInit {
+  
   computerBooks: any[] = [];
   psychologyBooks: any[] = [];
   scienceBooks: any[] = [];
   YoungAdultFiction: any[] = [];
   book$!: Observable<Book_module>;
+  user_id:any;
 
   constructor(
     private allbooks: AllBooksService,
     private route: Router,
     private bookurl: ActivatedRoute,
     private viewportScroller: ViewportScroller,
-    private cart: CartService
+    private cart: CartService,private fire_auth:AuthService
+
   ) {
+    this.user_id=this.fire_auth.myuser;
+  console.log("user id ",this.user_id)
     this.route.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -95,9 +101,11 @@ export class CardsSecComponent implements AfterViewInit {
   }
 
   addthistocart(book: Book_module, book_id: string) {
+   if(this.user_id!="notfound")
+   {
     let cartItems: any[] = [];
     let flag = true;
-    this.cart.getAllFromCart().subscribe((res) => {
+    this.cart.getAllFromCart(this.user_id).subscribe((res) => {
       cartItems = [];
       for (let i = 0; i < res.length; i++) {
         cartItems.push(res[i]);
@@ -106,10 +114,11 @@ export class CardsSecComponent implements AfterViewInit {
         }
       }
       if (flag) {
-        this.cart.addToCart(book, book_id, 1);
+        this.cart.addToCart(book, book_id, 1,this.user_id);
         alert('this item add to cart');
       }
     });
+   }
     // console.log(book_id);
   }
 

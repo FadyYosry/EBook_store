@@ -1,3 +1,6 @@
 export interface review_module
- {"comment": string;
+ {
+ "username":string,
+ "userid":string ,   
+"comment": string;
 "rating": number}

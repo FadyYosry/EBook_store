@@ -1,26 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable, from, map, of } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
 import { Cart_Book_module } from '../../modules/cartBook.module';
+import { AuthService } from '../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class CartService  {
 
 constructor(private fire_store:Firestore ) { }
 
-private collection=collection(this.fire_store,'cart')
- getAllFromCart(){
-  return collectionData(this.collection,{idField:'id'}) as Observable<Cart_Book_module[]>
+ getAllFromCart(userid:string){
+   let cart_url= "users/"+userid+"/cart" 
+ let collect=collection(this.fire_store,cart_url)
+  return collectionData(collect,{idField:'id'}) as Observable<Cart_Book_module[]>
  }
 
- getoneFromCart(id:any){
-  return from(getDoc( doc(this.fire_store,'cart',id))).pipe(
+ getoneFromCart(id:any,userid:string){
+  let cart_url= "users/"+userid+"/cart" 
+  return from(getDoc( doc(this.fire_store,cart_url,id))).pipe(
     map((res)=>res.data()as Cart_Book_module)
   );
  }
- addToCart(book:Book_module,bookid:string,num:number=1 ){
+ addToCart(book:Book_module,bookid:string,num:number=1,userid:string ){
   let mybook={
     "book_id":bookid,
     "numOfBookNeed":num,
@@ -39,16 +42,22 @@ private collection=collection(this.fire_store,'cart')
     "country": book.country||null ,
     "price": book.price||null 
   }
-return of( addDoc(this.collection,mybook));
+
+  let cart_url= "users/"+userid+"/cart" 
+  let collect=collection(this.fire_store,cart_url)
+
+return of( addDoc(collect,mybook).catch(()=>console.log("error!")));
  }
 
-deleteBookFromCart(id: string){
-  const ref = doc(this.fire_store,'cart',id);
+deleteBookFromCart(id: string,userid:string){
+  let cart_url= "users/"+userid+"/cart" 
+  const ref = doc(this.fire_store,cart_url,id);
   console.log(ref)
   deleteDoc(ref)
 }
-updateBookInToCart(book:Cart_Book_module,id: string){
-  const ref = doc(this.fire_store,'cart',id);
+updateBookInToCart(book:Cart_Book_module,id: string,userid:string){
+  let cart_url= "users/"+userid+"/cart" 
+  const ref = doc(this.fire_store,cart_url,id);
  updateDoc(ref,{...book})
 }
 }

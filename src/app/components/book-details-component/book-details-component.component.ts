@@ -8,6 +8,7 @@ import { AsyncPipe, CommonModule ,ViewportScroller} from '@angular/common';
 import { CartService } from '../../Services/cart/cart.service';
 import { FavService } from '../../Services/fav/fav.service';
 import { CardsSecComponent } from '../cards-sec/cards-sec.component';
+import { AuthService } from '../../Services/auth/auth.service';
 
 @Component({
   selector: 'app-book-details-component',
@@ -20,14 +21,18 @@ export class BookDetailsComponentComponent implements OnInit {
  
 book_id='';
 book$!:Observable<Book_module>;
+user_id:any;
   constructor(
     private route:Router,
     private bookurl: ActivatedRoute,
     private serve: AllBooksService,
     private cart: CartService,
     private fav: FavService,
-    private ViewportScroller: ViewportScroller
+    private ViewportScroller: ViewportScroller,
+    private fire_auth:AuthService
   ) {
+    this.user_id=this.fire_auth.myuser;
+    console.log("user id ",this.user_id);
    this.book_id=bookurl.snapshot.params['id'];
    this.ViewportScroller.scrollToPosition([0, 0]);
   }
@@ -140,10 +145,11 @@ let flag=true;
 
 addtocart(book:Book_module){
 
+ if(this.user_id!="notfound"){
   let cartItems:any[]=[];
   let flag=true;
   
-    this.cart.getAllFromCart().subscribe(res=>{
+    this.cart.getAllFromCart(this.user_id).subscribe(res=>{
       cartItems=[]
       for (let i = 0; i < res.length; i++) {
         cartItems.push(res[i]);
@@ -154,10 +160,11 @@ addtocart(book:Book_module){
         }
      }
      if(flag){
-      this.cart.addToCart(book,this.book_id,this.count())
+      this.cart.addToCart(book,this.book_id,this.count(),this.user_id)
      }
     });
     alert('this item add to cart')
+  }
 
 // this.cart.getAllFromCart().subscribe(
 //  res=>{
