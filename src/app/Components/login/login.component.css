@@ -26,11 +26,7 @@ body {
 .background-gradient {
   min-height: 100vh;
   background: rgb(217, 198, 231);
-  background: radial-gradient(
-    circle,
-    rgba(217, 198, 231, 1) 0%,
-    rgba(147, 125, 194, 1) 100%
-  );
+  background: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,14 +34,16 @@ body {
 
 .wrapper {
   overflow: hidden;
-  max-width: 390px;
-  background: #fff;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #e0c3fc;
   padding: 30px;
   border-radius: 15px;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  margin: auto; /* Add this line to center the wrapper */
-  margin-top: 100px; /* Adjust the top margin as needed */
+  margin: auto;
+  margin-top: 100px;
 }
+
 .wrapper .title-text {
   display: flex;
   width: 200%;

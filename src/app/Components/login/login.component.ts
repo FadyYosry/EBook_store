@@ -16,6 +16,11 @@ export class LoginComponent {
   loginPassword: string = '';
   rememberMe: boolean = false;
   showPassword: boolean = false;
+  firstName: string = '';
+  lastName: string = '';
+  signupEmail: string = '';
+  signupPassword: string = '';
+  currentForm: 'login' | 'signup' = 'login';
 
   constructor(private renderer: Renderer2) {}
 
