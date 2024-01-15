@@ -118,6 +118,8 @@ export class CardsSecComponent implements AfterViewInit {
         alert('this item add to cart');
       }
     });
+   }else{
+    alert('you must login first')
    }
     // console.log(book_id);
   }

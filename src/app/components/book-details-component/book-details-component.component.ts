@@ -123,6 +123,8 @@ if(this.user_id!="notfound")
       this.fav.addToFav(book,this.book_id,this.user_id)
      }
     });
+}else{
+  alert('you must login first')
 }
 
     // this.fav.getAllFromFav().subscribe(
@@ -167,6 +169,8 @@ addtocart(book:Book_module){
      }
     });
     alert('this item add to cart')
+  }else{
+    alert('you must login first')
   }
 
 // this.cart.getAllFromCart().subscribe(
