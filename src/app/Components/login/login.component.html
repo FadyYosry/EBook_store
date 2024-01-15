@@ -22,36 +22,62 @@
           for="signup"
           class="slide signup"
           (click)="currentForm = 'signup'"
-          >Signup</label>
+          >Signup</label
+        >
         <div class="slider-tab"></div>
       </div>
       <div class="form-inner">
+        <!-- login.component.html -->
+
         <form
           *ngIf="currentForm === 'login'"
-          action="#"
+          [formGroup]="loginForm"
           class="login"
-          #loginForm
         >
           <div class="field">
             <input
               type="text"
               placeholder="Email Address"
-              [(ngModel)]="loginEmail"
-              name="loginEmail"
-              required
+              formControlName="loginEmail"
             />
+            <div
+              *ngIf="
+                loginForm.get('loginEmail')!.hasError('email') &&
+                loginForm.get('loginEmail')!.touched
+              "
+            >
+              Invalid email address
+            </div>
           </div>
 
           <div class="field">
+            <!-- Use interpolation for dynamic input type -->
             <input
-              type="password"
-              placeholder="Password"
-              [(ngModel)]="loginPassword"
-              name="loginPassword"
-              required
               #passwordInput
+              type="{{ showPassword ? 'text' : 'password' }}"
+              placeholder="Password"
+              formControlName="loginPassword"
             />
+            <div
+              *ngIf="
+                loginForm.get('loginPassword')!.hasError('required') &&
+                loginForm.get('loginPassword')!.touched
+              "
+            >
+              Password is required
+            </div>
+            <div
+              *ngIf="
+                (loginForm.get('loginPassword')!.hasError('minlength') &&
+                  loginForm.get('loginPassword')!.touched) ||
+                (loginForm.get('loginPassword')!.hasError('invalidPassword') &&
+                  loginForm.get('loginPassword')!.touched)
+              "
+            >
+              Invalid password
+            </div>
           </div>
+
           <div class="field">
             <label for="showPassword" class="show-password-label">
               Show Password
@@ -65,7 +91,7 @@
 
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input type="submit" value="Login" />
+            <input type="submit" value="Login" (click)="submitLoginForm()" />
           </div>
         </form>
 
@@ -126,7 +152,7 @@
           </div>
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input type="submit" value="Signup" />
+            <input type="submit" value="Signup" (click)="submitSignUpForm()" />
           </div>
         </form>
       </div>
