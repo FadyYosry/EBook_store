@@ -2,11 +2,8 @@ import { AsyncPipe, CommonModule,ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../Services/cart/cart.service';
-
 import { AuthService } from '../../Services/auth/auth.service';
 import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-add-to-cart',

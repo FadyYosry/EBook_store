@@ -11,12 +11,13 @@ export class FavService {
 
   constructor(private fire_store:Firestore ) { }
 
-  private collection=collection(this.fire_store,'favourites')
-   getAllFromFav(){
-    return collectionData(this.collection,{idField:'id'}) as Observable<Fav_Book_module[]>
+   getAllFromFav(userid:string){
+    let fav_url= "users/"+userid+"/favourites" 
+    let collect=collection(this.fire_store,fav_url)
+    return collectionData(collect,{idField:'id'}) as Observable<Fav_Book_module[]>
    }
   
-   addToFav(book:Book_module,bookid:String){
+   addToFav(book:Book_module,bookid:String,userid:string){
     let mybook={
       "book_id":bookid,
       "title":book.title||null ,
@@ -34,11 +35,14 @@ export class FavService {
       "country": book.country||null ,
       "price": book.price||null 
     }
-  return of( addDoc(this.collection,mybook));
+    let fav_url= "users/"+userid+"/favourites" 
+    let collect=collection(this.fire_store,fav_url)
+  return of( addDoc(collect,mybook));
    }
   
-  deleteProductFromFav(id: string){
-    const ref = doc(this.fire_store,'favourites',id);
+  deleteProductFromFav(id: string,userid:string){
+    let fav_url= "users/"+userid+"/favourites" 
+    const ref = doc(this.fire_store,fav_url,id);
     console.log(ref)
     deleteDoc(ref)
   }

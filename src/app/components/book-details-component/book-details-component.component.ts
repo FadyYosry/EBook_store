@@ -103,24 +103,27 @@ user_id:any;
 }
 
 addtofav(book:Book_module){
+if(this.user_id!="notfound")
+{
   alert('this item add to fav')
-let cartItems:any[]=[];
-let flag=true;
-
-  this.fav.getAllFromFav().subscribe(res=>{
-    cartItems=[]
-    for (let i = 0; i < res.length; i++) {
-      cartItems.push(res[i]);
-      if(res[i].book_id ==this.book_id)
-      {
-        flag=false;
-        console.log(res[i].book_id +'  '+this.book_id);
-      }
-   }
-   if(flag){
-    this.fav.addToFav(book,this.book_id)
-   }
-  });
+  let cartItems:any[]=[];
+  let flag=true;
+  
+    this.fav.getAllFromFav(this.user_id).subscribe(res=>{
+      cartItems=[]
+      for (let i = 0; i < res.length; i++) {
+        cartItems.push(res[i]);
+        if(res[i].book_id ==this.book_id)
+        {
+          flag=false;
+          console.log(res[i].book_id +'  '+this.book_id);
+        }
+     }
+     if(flag){
+      this.fav.addToFav(book,this.book_id,this.user_id)
+     }
+    });
+}
 
     // this.fav.getAllFromFav().subscribe(
   //   res=>{

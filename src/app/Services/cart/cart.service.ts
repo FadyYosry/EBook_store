@@ -3,7 +3,6 @@ import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, 
 import { Observable, from, map, of } from 'rxjs';
 import { Book_module } from '../../modules/book.module';
 import { Cart_Book_module } from '../../modules/cartBook.module';
-import { AuthService } from '../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
