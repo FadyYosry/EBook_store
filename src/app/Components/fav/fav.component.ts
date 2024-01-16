@@ -17,19 +17,20 @@ export class FavComponent implements OnInit {
   cartItems:any[]=[]
   constructor(private fire_auth:AuthService,private fav:FavService, private ViewportScroller:ViewportScroller)
   {
-    this.user_id=this.fire_auth.myuser;
-    console.log("user id ",this.user_id)
     this.ViewportScroller.scrollToPosition([0, 0]);
   }
   ngOnInit(): void {
-if(this.user_id!="notfound")
-{
-  this.fav.getAllFromFav(this.user_id).subscribe(res=>{
-    this.cartItems=[]
-    for (let i = 0; i < res.length; i++) {
-      this.cartItems.push(res[i]);
-   }}); 
-}
+    this.fire_auth.getUser().subscribe((user) => {
+      if(user?.uid){
+        this.user_id = user.uid;
+        this.fav.getAllFromFav(this.user_id).subscribe(res=>{
+          this.cartItems=[]
+          for (let i = 0; i < res.length; i++) {
+            this.cartItems.push(res[i]);
+         }});
+         console.log("user id form fav",this.user_id) 
+      }
+    });
   }
 
   removeItem(bookid:string){

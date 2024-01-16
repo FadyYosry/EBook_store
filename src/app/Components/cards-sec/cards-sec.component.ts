@@ -31,24 +31,26 @@ import { AuthService } from '../../Services/auth/auth.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CardsSecComponent implements AfterViewInit {
-  
   computerBooks: any[] = [];
   psychologyBooks: any[] = [];
   scienceBooks: any[] = [];
   YoungAdultFiction: any[] = [];
   book$!: Observable<Book_module>;
-  user_id:any;
+  user_id: any;
 
   constructor(
     private allbooks: AllBooksService,
     private route: Router,
     private bookurl: ActivatedRoute,
     private viewportScroller: ViewportScroller,
-    private cart: CartService,private fire_auth:AuthService
-
+    private cart: CartService,
+    private fire_auth: AuthService
   ) {
-    this.user_id=this.fire_auth.myuser;
-  console.log("user id ",this.user_id)
+    this.fire_auth.getUser().subscribe((user) => {
+      if (user?.uid) {
+        this.user_id = user.uid;
+      }
+    });
     this.route.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
@@ -58,10 +60,10 @@ export class CardsSecComponent implements AfterViewInit {
       });
 
     allbooks.getAllFromAllBooks().subscribe((res: any) => {
-      this.computerBooks= [];
-     this. psychologyBooks= [];
-     this. scienceBooks= [];
-      this.YoungAdultFiction= [];
+      this.computerBooks = [];
+      this.psychologyBooks = [];
+      this.scienceBooks = [];
+      this.YoungAdultFiction = [];
       // Define the type of 'res' as 'Book_module[]'
       for (let i = 0; i < res.length; i++) {
         if (res[i]['categories'] == 'Computers') {
@@ -83,14 +85,6 @@ export class CardsSecComponent implements AfterViewInit {
     this.viewportScroller.scrollToPosition([0, 0]);
   }
 
-  routing() {
-    console.log(this.bookurl.snapshot.params['id']);
-    this.route
-      .navigate(['/'], { replaceUrl: false })
-      .then(() =>
-        this.route.navigate(['/details', this.bookurl.snapshot.params['id']])
-      );
-  }
   fav(e: Event) {
     const element = e.target as HTMLElement;
     if (element) {
@@ -105,26 +99,25 @@ export class CardsSecComponent implements AfterViewInit {
   }
 
   addthistocart(book: Book_module, book_id: string) {
-   if(this.user_id!="notfound")
-   {
-    let cartItems: any[] = [];
-    let flag = true;
-    this.cart.getAllFromCart(this.user_id).subscribe((res) => {
-      cartItems = [];
-      for (let i = 0; i < res.length; i++) {
-        cartItems.push(res[i]);
-        if (res[i].book_id == book_id) {
-          flag = false;
+    if (this.user_id) {
+      let cartItems: any[] = [];
+      let flag = true;
+      this.cart.getAllFromCart(this.user_id).subscribe((res) => {
+        cartItems = [];
+        for (let i = 0; i < res.length; i++) {
+          cartItems.push(res[i]);
+          if (res[i].book_id == book_id) {
+            flag = false;
+          }
         }
-      }
-      if (flag) {
-        this.cart.addToCart(book, book_id, 1,this.user_id);
-        alert('this item add to cart');
-      }
-    });
-   }else{
-    alert('you must login first')
-   }
+        if (flag) {
+          this.cart.addToCart(book, book_id, 1, this.user_id);
+          alert('this item add to cart');
+        }
+      });
+    } else {
+      alert('you must login first');
+    }
     // console.log(book_id);
   }
 

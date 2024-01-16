@@ -44,9 +44,7 @@ import { UserinfoService } from './Services/user/userinfo.service';
   styleUrl: './app.component.css',
 })
 
-export class AppComponent implements OnInit {
- 
-
+export class AppComponent  {
   constructor(private getuser:UserinfoService){
 
   }
@@ -56,6 +54,7 @@ export class AppComponent implements OnInit {
     );
 
   }
+
 
 }
 

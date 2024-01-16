@@ -6,6 +6,7 @@ import { CartService } from '../../Services/cart/cart.service';
 import { FavService } from '../../Services/fav/fav.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../Services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -18,16 +19,26 @@ export class HeaderComponent {
   allbooks: any;
   filterdbooks1: any;
   searchTerm: any;
+  user_id: any;
+  checkLogin: boolean = false;
   constructor(
-    private fire_store: Firestore,
-    private bookurl: ActivatedRoute,
     private serve: AllBooksService,
-    private cart: CartService,
-    private fav: FavService,
-    private router: Router
+    private router: Router,
+    private fire_auth: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.fire_auth.logout();
+    // this.fire_auth.login('sasa11@gmail.com', '123456');
+    this.fire_auth.getUser().subscribe((user) => {
+      // console.log("User ID:", user?.uid || 'notfound');
+      this.checkLogin = false;
+      if (user?.uid) {
+        this.checkLogin = true;
+        // console.log("form condition User ID:", user?.uid);
+      }
+    });
+
     this.serve.getAllFromAllBooks().subscribe((data) => {
       this.allbooks = data;
     });
@@ -38,8 +49,6 @@ export class HeaderComponent {
   goToAddToFav() {
     this.router.navigate(['/add-to-fav']);
   }
-
-  fire() {}
   remove() {
     this.filterdbooks1 = [];
   }
