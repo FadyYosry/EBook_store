@@ -7,6 +7,7 @@ import { FavService } from '../../Services/fav/fav.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/auth/auth.service';
+import { UserinfoService } from '../../Services/user/userinfo.service';
 
 @Component({
   selector: 'app-header',
@@ -21,10 +22,12 @@ export class HeaderComponent {
   searchTerm: any;
   user_id: any;
   checkLogin: boolean = false;
+  userName: string = '';
   constructor(
     private serve: AllBooksService,
     private router: Router,
-    private fire_auth: AuthService
+    private fire_auth: AuthService,
+    private user: UserinfoService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +38,10 @@ export class HeaderComponent {
       this.checkLogin = false;
       if (user?.uid) {
         this.checkLogin = true;
+        this.user.getuser(user?.uid).subscribe((res) => {
+          console.log(res.firstname);
+          this.userName = res.firstname;
+        });
         // console.log("form condition User ID:", user?.uid);
       }
     });
