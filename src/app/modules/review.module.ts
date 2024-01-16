@@ -1,6 +1,6 @@
 export interface review_module
  {
- "username":string,
- "userid":string ,   
+ "userfname":string,
+ "userlname":string,  
 "comment": string;
 "rating": number}
