@@ -23,10 +23,10 @@ login(email:string,password:string){
   }).catch(()=>console.log("error"));
 }
 
-  signUp(email:string,password:string,fname:string,lname:string,phone:string ){
+  signUp(email:string,password:string,fname:string,lname:string ){
         createUserWithEmailAndPassword(this.fire_auth,email,password).then(val=>{
       setDoc(doc(this.fire_store,'users',val.user.uid),
-      {firstname:fname,lastname:lname,phone:phone,email:email,uid:val.user.uid})
+      {firstname:fname,lastname:lname,email:email,uid:val.user.uid})
       console.log(val.user.uid)}).catch(()=>console.log("error"));
   }
 logout(){

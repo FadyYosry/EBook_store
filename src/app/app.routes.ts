@@ -6,6 +6,7 @@ import { AddToCartComponent } from './Components/add-to-cart/add-to-cart.compone
 import { ReviewComponentComponent } from './Components/review-component/review-component.component';
 import { FavComponent } from './Components/fav/fav.component';
 import { PaypalComponent } from './Components/paypal/paypal.component';
+import { LoginComponent } from './Components/login/login.component';
 
 export const routes: Routes = [
   { path: '', component: BookViewComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'add-to-cart', component: AddToCartComponent },
   { path: 'review/:id', component: ReviewComponentComponent },
   { path: 'add-to-fav', component: FavComponent },
-  {path:'paypal/:total',component:PaypalComponent}
+  {path:'paypal/:total',component:PaypalComponent},
+  {path:'login',component:LoginComponent}
 ];

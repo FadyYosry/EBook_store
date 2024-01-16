@@ -58,6 +58,10 @@ export class CardsSecComponent implements AfterViewInit {
       });
 
     allbooks.getAllFromAllBooks().subscribe((res: any) => {
+      this.computerBooks= [];
+     this. psychologyBooks= [];
+     this. scienceBooks= [];
+      this.YoungAdultFiction= [];
       // Define the type of 'res' as 'Book_module[]'
       for (let i = 0; i < res.length; i++) {
         if (res[i]['categories'] == 'Computers') {

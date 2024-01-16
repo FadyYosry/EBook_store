@@ -9,6 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthService } from '../../Services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,7 @@ export class LoginComponent {
   showPassword: boolean = false;
   currentForm: 'login' | 'signup' = 'login';
 
-  constructor(private renderer: Renderer2, private fb: FormBuilder) {
+  constructor(private fire_auth :AuthService,private renderer: Renderer2, private fb: FormBuilder,private rout:Router) {
     this.loginForm = this.fb.group({
       loginEmail: ['', [Validators.required, Validators.email]],
       loginPassword: [
@@ -35,8 +37,8 @@ export class LoginComponent {
     });
 
     this.signupForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(5)]],
-      lastName: ['', [Validators.required, Validators.minLength(5)]],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       signupEmail: ['', [Validators.required, Validators.email]],
       signupPassword: [
         '',
@@ -73,9 +75,10 @@ export class LoginComponent {
 
   submitLoginForm() {
     if (this.loginForm.valid) {
-      const email = this.loginForm.get('loginEmail')?.value;
+      const email = this.loginForm.get('loginEmail')?.value ;
       const password = this.loginForm.get('loginPassword')?.value;
-
+      this.fire_auth.login(email,password);
+      this.rout.navigate(['/']);
       console.log('Email:', email);
       console.log('Password:', password);
     }
@@ -87,7 +90,8 @@ export class LoginComponent {
       const lastName = this.signupForm.get('lastName')?.value;
       const email = this.signupForm.get('signupEmail')?.value;
       const password = this.signupForm.get('signupPassword')?.value;
-
+      this.fire_auth.signUp(email,password,firstName,lastName);
+      this.rout.navigate(['login']);
       console.log('First Name:', firstName);
       console.log('Last Name:', lastName);
       console.log('Email:', email);
