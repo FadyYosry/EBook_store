@@ -67,6 +67,7 @@
           (click)="goToAddToCart()"
         ></i>
         <div class="icons">
+          @if (checkLogin) {
           <i
             class="fa-solid fa-cart-shopping con"
             (click)="goToAddToCart()"
@@ -80,6 +81,16 @@
           ></i>
           <i class="fa-solid fa-pipe con"></i>
           <a routerLink="about_us"> <i class="fa-solid fa-user con"></i></a>
+
+          } @else{
+
+          <button class="button" routerLink="login/">
+            LOGIN | REGISTER
+            <div class="hoverEffect">
+              <div></div>
+            </div>
+          </button>
+          }
         </div>
 
         <div class="collapse navbar-collapse listp" id="navbarSupportedContent">
@@ -208,9 +219,7 @@
             <i class="fa-solid fa-phone ph"></i>
             <span>+44587999000</span>
 
-            <button class="btn btn1" type="submit" (click)="fire()">
-              request a call
-            </button>
+            <button class="btn btn1" type="submit">request a call</button>
           </div>
         </div>
       </div>
