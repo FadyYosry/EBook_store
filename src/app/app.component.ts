@@ -43,26 +43,8 @@ import { LoginComponent } from './Components/login/login.component';
   styleUrl: './app.component.css',
 })
 
-export class AppComponent implements OnInit {
- 
+export class AppComponent  {
 
-  constructor(private fire_auth:AuthService){
-
-    // signInWithEmailAndPassword(fire_auth,"sasa11@gmail.com","123456").then(val=>{
-    //   console.log(val.user.uid)
-    // }).catch(()=>console.log("error"));
-    // createUserWithEmailAndPassword(fire_auth,"sasa11@gmail.com","123456").then(val=>{
-    //   setDoc(doc(fire_store,'users',val.user.uid),{name:"joy"})
-    //   console.log(val.user.uid)}).catch(()=>console.log("error"));
- 
-  }
-  ngOnInit(): void {
-  //  this.fire_auth.login("sasa11@gmail.com","123456");
-  this.fire_auth.ngOnInit();
-  // this.fire_auth.login("sasa11@gmail.com","123456");
-//  console.log( this.fire_auth.myuser);
-  // this.fire_auth.logout();
-  }
 
 }
 
