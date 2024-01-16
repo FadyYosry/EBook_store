@@ -76,6 +76,7 @@ color: #231F2D;
 
 #parent .content .list li{
     font-size: 14px;
+    font-weight: bold;
 }
 #parent .content .icons{
     width: 15%;
