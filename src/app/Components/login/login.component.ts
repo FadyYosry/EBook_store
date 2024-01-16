@@ -27,13 +27,15 @@ export class LoginComponent {
   showPassword: boolean = false;
   currentForm: 'login' | 'signup' = 'login';
 
-  constructor(private fire_auth :AuthService,private renderer: Renderer2, private fb: FormBuilder,private rout:Router) {
+  constructor(
+    private fire_auth: AuthService,
+    private renderer: Renderer2,
+    private fb: FormBuilder,
+    private rout: Router
+  ) {
     this.loginForm = this.fb.group({
-      loginEmail: ['', [Validators.required, Validators.email]],
-      loginPassword: [
-        '',
-        [Validators.required, Validators.minLength(5), this.passwordValidator],
-      ],
+      loginEmail: [''],
+      loginPassword: [''],
     });
 
     this.signupForm = this.fb.group({
@@ -74,14 +76,11 @@ export class LoginComponent {
   }
 
   submitLoginForm() {
-    if (this.loginForm.valid) {
-      const email = this.loginForm.get('loginEmail')?.value ;
-      const password = this.loginForm.get('loginPassword')?.value;
-      this.fire_auth.login(email,password);
-      this.rout.navigate(['/']);
-      console.log('Email:', email);
-      console.log('Password:', password);
-    }
+    const email = this.loginForm.get('loginEmail')?.value;
+    const password = this.loginForm.get('loginPassword')?.value;
+
+    this.fire_auth.login(email, password);
+    this.rout.navigate(['/']);
   }
 
   submitSignUpForm() {
@@ -90,12 +89,8 @@ export class LoginComponent {
       const lastName = this.signupForm.get('lastName')?.value;
       const email = this.signupForm.get('signupEmail')?.value;
       const password = this.signupForm.get('signupPassword')?.value;
-      this.fire_auth.signUp(email,password,firstName,lastName);
+      this.fire_auth.signUp(email, password, firstName, lastName);
       this.rout.navigate(['login']);
-      console.log('First Name:', firstName);
-      console.log('Last Name:', lastName);
-      console.log('Email:', email);
-      console.log('Password:', password);
       alert('SignUp Successfuly ❤️');
     }
   }
