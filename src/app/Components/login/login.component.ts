@@ -21,20 +21,24 @@ export class LoginComponent {
   @ViewChild('passwordInput') passwordInput!: ElementRef;
 
   loginForm: FormGroup;
-  loginEmail: string = '';
-  loginPassword: string = '';
-  rememberMe: boolean = false;
+  signupForm: FormGroup;
   showPassword: boolean = false;
-  firstName: string = '';
-  lastName: string = '';
-  signupEmail: string = '';
-  signupPassword: string = '';
   currentForm: 'login' | 'signup' = 'login';
 
   constructor(private renderer: Renderer2, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       loginEmail: ['', [Validators.required, Validators.email]],
       loginPassword: [
+        '',
+        [Validators.required, Validators.minLength(5), this.passwordValidator],
+      ],
+    });
+
+    this.signupForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(5)]],
+      lastName: ['', [Validators.required, Validators.minLength(5)]],
+      signupEmail: ['', [Validators.required, Validators.email]],
+      signupPassword: [
         '',
         [Validators.required, Validators.minLength(5), this.passwordValidator],
       ],
@@ -77,5 +81,18 @@ export class LoginComponent {
     }
   }
 
-  submitSignUpForm() {}
+  submitSignUpForm() {
+    if (this.signupForm.valid) {
+      const firstName = this.signupForm.get('firstName')?.value;
+      const lastName = this.signupForm.get('lastName')?.value;
+      const email = this.signupForm.get('signupEmail')?.value;
+      const password = this.signupForm.get('signupPassword')?.value;
+
+      console.log('First Name:', firstName);
+      console.log('Last Name:', lastName);
+      console.log('Email:', email);
+      console.log('Password:', password);
+      alert('SignUp Successfuly ❤️');
+    }
+  }
 }

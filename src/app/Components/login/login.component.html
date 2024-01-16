@@ -27,8 +27,6 @@
         <div class="slider-tab"></div>
       </div>
       <div class="form-inner">
-        <!-- login.component.html -->
-
         <form
           *ngIf="currentForm === 'login'"
           [formGroup]="loginForm"
@@ -51,7 +49,6 @@
           </div>
 
           <div class="field">
-            <!-- Use interpolation for dynamic input type -->
             <input
               #passwordInput
               type="{{ showPassword ? 'text' : 'password' }}"
@@ -97,49 +94,87 @@
 
         <form
           *ngIf="currentForm === 'signup'"
+          [formGroup]="signupForm"
           action="#"
           class="signup"
-          #signupForm
         >
           <div class="field">
             <input
               type="text"
               placeholder="First Name"
-              [(ngModel)]="firstName"
-              name="firstName"
-              required
+              formControlName="firstName"
             />
+            <div
+              *ngIf="
+                signupForm.get('firstName')!.hasError('minlength') &&
+                signupForm.get('firstName')!.touched
+              "
+            >
+              Invalid Name
+            </div>
           </div>
 
           <div class="field">
             <input
               type="text"
               placeholder="Last Name"
-              [(ngModel)]="lastName"
-              name="lastName"
-              required
+              formControlName="lastName"
             />
-          </div>
-          <div class="field">
-            <input
-              type="text"
-              placeholder="Email Address"
-              [(ngModel)]="signupEmail"
-              name="loginEmail"
-              required
-            />
+            <div
+              *ngIf="
+                signupForm.get('lastName')!.hasError('minlength') &&
+                signupForm.get('lastName')!.touched
+              "
+            >
+              Invalid Name
+            </div>
           </div>
 
           <div class="field">
             <input
-              type="password"
-              placeholder="Password"
-              [(ngModel)]="signupPassword"
-              name="loginPassword"
-              required
-              #passwordInput
+              type="text"
+              placeholder="Email Address"
+              formControlName="signupEmail"
             />
+            <div
+              *ngIf="
+                signupForm.get('signupEmail')!.hasError('email') &&
+                signupForm.get('signupEmail')!.touched
+              "
+            >
+              Invalid email address
+            </div>
           </div>
+
+          <div class="field">
+            <input
+              #passwordInput
+              type="{{ showPassword ? 'text' : 'password' }}"
+              placeholder="Password"
+              formControlName="signupPassword"
+            />
+            <div
+              *ngIf="
+                signupForm.get('signupPassword')!.hasError('required') &&
+                signupForm.get('signupPassword')!.touched
+              "
+            >
+              Password is required
+            </div>
+            <div
+              *ngIf="
+                (signupForm.get('signupPassword')!.hasError('minlength') &&
+                  signupForm.get('signupPassword')!.touched) ||
+                (signupForm
+                  .get('signupPassword')!
+                  .hasError('invalidPassword') &&
+                  signupForm.get('signupPassword')!.touched)
+              "
+            >
+              Invalid password
+            </div>
+          </div>
+
           <div class="field">
             <label for="showPassword" class="show-password-label">
               Show Password
@@ -150,6 +185,7 @@
               />
             </label>
           </div>
+
           <div class="field btn">
             <div class="btn-layer"></div>
             <input type="submit" value="Signup" (click)="submitSignUpForm()" />

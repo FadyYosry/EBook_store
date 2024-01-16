@@ -62,7 +62,10 @@
           <i class="fa-solid fa-phone ph"></i>
           <span>+44587999000</span>
         </div>
-        <i class="fa-solid fa-cart-shopping con ss "  (click)="goToAddToCart()"></i>
+        <i
+          class="fa-solid fa-cart-shopping con ss"
+          (click)="goToAddToCart()"
+        ></i>
         <div class="icons">
           <i
             class="fa-solid fa-cart-shopping con"
@@ -76,7 +79,7 @@
             style="cursor: pointer"
           ></i>
           <i class="fa-solid fa-pipe con"></i>
-         <a   routerLink="about_us"> <i class="fa-solid fa-user con"></i></a>
+          <a routerLink="about_us"> <i class="fa-solid fa-user con"></i></a>
         </div>
 
         <div class="collapse navbar-collapse listp" id="navbarSupportedContent">
@@ -105,15 +108,19 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="details" (click)="goToAddToCart()">Cart</a>
+              <a class="nav-link" routerLink="details" (click)="goToAddToCart()"
+                >Cart</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="details" (click)="goToAddToFav()">Favorite</a>
+              <a class="nav-link" routerLink="details" (click)="goToAddToFav()"
+                >Favorite</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="about_us">About Us</a>
             </li>
-            
+
             <!-- ///////////////////////////////////////// -->
             <!-- <li class="nav-item ii">
               <a class="nav-link" href="#">The must read</a>
