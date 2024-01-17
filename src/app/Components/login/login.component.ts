@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import {
   AbstractControl,
@@ -27,7 +27,8 @@ export class LoginComponent {
   showPassword: boolean = false;
   currentForm: 'login' | 'signup' = 'login';
 
-  constructor(private fire_auth :AuthService,private renderer: Renderer2, private fb: FormBuilder,private rout:Router) {
+  constructor(private fire_auth :AuthService,private renderer: Renderer2, private fb: FormBuilder,private rout:Router,private ViewportScroller: ViewportScroller) {
+    this.ViewportScroller.scrollToPosition([0, 0]);
     this.loginForm = this.fb.group({
       loginEmail: ['', [Validators.required, Validators.email]],
       loginPassword: [
