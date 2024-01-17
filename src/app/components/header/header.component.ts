@@ -31,7 +31,7 @@ export class HeaderComponent {
   ) {}
 
   ngOnInit(): void {
-    this.fire_auth.logout();
+    // this.fire_auth.logout();
     // this.fire_auth.login('sasa11@gmail.com', '123456');
     this.fire_auth.getUser().subscribe((user) => {
       // console.log("User ID:", user?.uid || 'notfound');
@@ -55,6 +55,10 @@ export class HeaderComponent {
   }
   goToAddToFav() {
     this.router.navigate(['/add-to-fav']);
+  }
+  logout(){
+    this.fire_auth.logout();
+
   }
   remove() {
     this.filterdbooks1 = [];

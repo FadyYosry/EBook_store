@@ -66,8 +66,9 @@
           class="fa-solid fa-cart-shopping con ss"
           (click)="goToAddToCart()"
         ></i>
+        @if (checkLogin) {
         <div class="icons">
-          @if (checkLogin) {
+         
           <i
             class="fa-solid fa-cart-shopping con"
             (click)="goToAddToCart()"
@@ -80,10 +81,26 @@
             style="cursor: pointer"
           ></i>
           <i class="fa-solid fa-pipe con"></i>
-          <a routerLink="about_us"> <i class="fa-solid fa-user con"></i></a>
-          <span>{{userName}}</span>
-          } @else{
 
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle logoutbtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               <i class="fa-solid fa-user con"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="logout"><a class="dropdown-item" href="#" (click)=" logout()">LogOut</a></li>
+            
+            </ul>
+          
+        </div>
+          <span class="thepre">{{userName}}</span>
+        </div>
+
+        <span class="the_last">Hello ,{{userName}}</span>
+
+          }
+          
+          @else{
+              
           <button class="button" routerLink="login/">
             LOGIN | REGISTER
             <div class="hoverEffect">
@@ -91,7 +108,8 @@
             </div>
           </button>
           }
-        </div>
+       
+          
 
         <div class="collapse navbar-collapse listp" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 list menu">
@@ -131,6 +149,10 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="about_us">About Us</a>
             </li>
+            <li class="nav-item logg" (click)=" logout()">
+              <button style="background-color: transparent; border: transparent ; font-weight: bold;"><a class="nav-link" >LogOut</a></button>
+            </li>
+           
 
             <!-- ///////////////////////////////////////// -->
             <!-- <li class="nav-item ii">

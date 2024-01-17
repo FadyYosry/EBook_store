@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../../Services/review/review.service';
 import { AuthService } from '../../Services/auth/auth.service';
+import { UserinfoService } from '../../Services/user/userinfo.service';
 
 @Component({
   selector: 'app-review-component',
@@ -20,7 +21,8 @@ export class ReviewComponentComponent {
     bookurl: ActivatedRoute,
     private review: ReviewService,
     private ViewportScroller: ViewportScroller,
-    private fire_auth: AuthService
+    private fire_auth: AuthService,
+    private getuserinfo:UserinfoService
   ) {
     this.book_id = bookurl.snapshot.params['id'];
     this.ViewportScroller.scrollToPosition([0, 0]);
@@ -45,7 +47,8 @@ export class ReviewComponentComponent {
   selectedRating: number = 0;
   savedReviews: { comment: string; rating: number }[] = [];
   errorMessage: string = '';
-  reviewerName: string = '';
+  reviewerfName: string = '';
+  reviewerlName: string = '';
 
   setRating(star: number): void {
     this.selectedRating = star;
@@ -54,11 +57,17 @@ export class ReviewComponentComponent {
   submitReview(): void {
     if (this.logIn) {
       this.fire_auth.getUser().subscribe((user) => {
-        this.reviewerName = user?.firstName;
-        console.log("Name of Review",this.reviewerName);
+        this.getuserinfo.getuser(user?.uid).subscribe(
+         userdata=>{ this.reviewerfName = userdata.firstname;
+          this.reviewerlName = userdata.lastname;}
+        );
+        
+    
       });
       if (this.reviewComment && this.selectedRating > 0) {
         let myreview = {
+          fname:this.reviewerfName,
+          lname:this.reviewerlName,
           comment: this.reviewComment,
           rating: this.selectedRating,
         };

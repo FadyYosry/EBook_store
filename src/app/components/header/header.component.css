@@ -1,6 +1,10 @@
 *{
     text-decoration: none;
 }
+.logoutbtn{
+    background-color: transparent !important;
+    border: transparent !important;
+}
 body{
     z-index: 1;
 }
@@ -10,6 +14,17 @@ body{
     display: flex;
     flex-wrap: wrap;
     
+}
+.logg{
+    display: none;
+}
+.thepre{
+    color:rgb(147, 125, 194); 
+    font-weight: bold;
+}
+.the_last{
+    display: none;
+
 }
 
 #parent .searchh {
@@ -57,7 +72,7 @@ color: #231F2D;
 }
 #parent .content .listp{
     width: 25% !important;
-    margin-right: 20px;
+    margin-right: 9px;
     background-color: white !important;
     
     
@@ -68,11 +83,13 @@ color: #231F2D;
 
 #parent .content .list li{
     font-size: 14px;
+    font-weight: bold;
 }
 #parent .content .icons{
-    width: 10%;
+    width: 15%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     order: 2;
  
 }
@@ -169,7 +186,7 @@ color: #231F2D;
     border: 1px solid rgb(147, 125, 194);
 }
 .boxx{
-    width: 12%;
+    width: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -231,6 +248,35 @@ color: #231F2D;
 /* .formm{
     display: none !important;
 } */
+
+.the_last{
+    display: none;
+    font-weight: bold;
+
+}
+.logg{
+    display: block;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1% 2%;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10rem;
+    transition: all 0.02s;
+    font-weight: bold;
+    color: rgb(37, 37, 37);
+    z-index: 0;
+    box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    margin-top: 0%;
+    order: 1;
+    margin-left: 16% !important;
+  }
 #parent .searchh {
 
     width : 100%;
@@ -255,7 +301,10 @@ color: #231F2D;
 #parent .content .icons{
 
     order: 0;
-    width: 15%;
+    width: 18%;
+    display: flex;
+    align-items: center;
+
  
 }
 
@@ -299,6 +348,11 @@ color: #231F2D;
  }
 
  @media (max-width: 600px){
+    .the_last{
+        display: block;
+        color:  rgb(147, 125, 194);
+    
+    }
 
     .phone{
         display: none;
@@ -309,7 +363,7 @@ color: #231F2D;
 
     }
     #parent .content .ss{
-        display: block;
+        display: none;
         color:  rgb(147, 125, 194);
         margin-left: 19%;
     }
@@ -318,13 +372,32 @@ color: #231F2D;
         display: none;
     }
     .boxx{
-        width: 53%;
+        width: 37%;
+        margin-right: 4%;
     }
     #parent .content .shopicon{
         margin-left: 200px;
     }
 
-
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1% 2%;
+        border: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10rem;
+        transition: all 0.02s;
+        font-weight: bold;
+        color: rgb(37, 37, 37);
+        z-index: 0;
+        box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+        font-size: 12px;
+        margin-top: 1%;
+        order: 1;
+        margin-left: 3% !important;
+      }
 
 
 
@@ -337,7 +410,7 @@ color: #231F2D;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 30px;
+    padding: 1% 2%;
     border: 0;
     position: relative;
     overflow: hidden;
@@ -347,6 +420,9 @@ color: #231F2D;
     color: rgb(37, 37, 37);
     z-index: 0;
     box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    margin-top: 1%;
+    order: 1;
   }
   
   .button:hover {
