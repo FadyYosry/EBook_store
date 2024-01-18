@@ -50,7 +50,7 @@ export class AppComponent  {
   }
   ngOnInit(): void {
      this.getuser.getuser("2eaLZtRKXoerKo0xca46bj9cTE83").subscribe(
-      res=> console.log(res.firstname+res.lastname)
+      // res=> console.log(res.firstname+res.lastname)
     );
 
   }

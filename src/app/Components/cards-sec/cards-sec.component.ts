@@ -94,7 +94,7 @@ export class CardsSecComponent implements AfterViewInit {
         element.style.color = '#5c4e79';
       }
     } else {
-      console.log('Element not found');
+      // console.log('Element not found');
     }
   }
 

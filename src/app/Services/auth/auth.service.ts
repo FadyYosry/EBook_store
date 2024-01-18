@@ -20,17 +20,18 @@ export class AuthService implements OnInit {
   ngOnInit(): void {
     user(this.fire_auth).subscribe((myuser) => {
       this.myuser = myuser?.uid || 'notfound';
-      console.log(myuser?.uid || 'notfound');
+      // console.log(myuser?.uid || 'notfound');
     });
   }
 
   login(email: string, password: string) {
     signInWithEmailAndPassword(this.fire_auth, email, password)
       .then((val) => {
-        console.log(val.user.uid);
+        // console.log(val.user.uid);
         this.route.navigate(['/']);
       })
-      .catch(() => {console.log('error');
+      .catch(() => {
+        // console.log('error');
       alert('Login Failed');
     });
   }
@@ -44,9 +45,11 @@ export class AuthService implements OnInit {
           email: email,
           uid: val.user.uid,
         });
-        console.log(val.user.uid);
+        // console.log(val.user.uid);
       })
-      .catch(() => console.log('error'));
+      .catch(() => {
+        // console.log('error')
+      });
   }
   logout() {
     signOut(this.fire_auth);

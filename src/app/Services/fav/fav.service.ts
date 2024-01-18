@@ -43,7 +43,7 @@ export class FavService {
   deleteProductFromFav(id: string,userid:string){
     let fav_url= "users/"+userid+"/favourites" 
     const ref = doc(this.fire_store,fav_url,id);
-    console.log(ref)
+    // console.log(ref)
     deleteDoc(ref)
   }
 }

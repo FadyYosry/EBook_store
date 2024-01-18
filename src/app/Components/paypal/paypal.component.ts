@@ -46,7 +46,7 @@ ngOnInit(): void {
         }
         );
       },onerror: (err:any)=> {
-        console.log(err);
+        // console.log(err);
       }
   }).render(this.paymentref.nativeElement);
   

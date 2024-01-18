@@ -40,7 +40,9 @@ export class ReviewComponentComponent {
       for (let i = 0; i < res.length; i++) {
         this.allreview.push(res[i]);
       }
-      this.allreview.forEach((Element) => console.log(Element));
+      this.allreview.forEach((Element) => {
+        // console.log(Element)
+      });
     });
   }
   reviewComment: string = '';
@@ -64,7 +66,7 @@ export class ReviewComponentComponent {
               comment: this.reviewComment,
               rating: this.selectedRating,
             };
-            console.log('by ', myreview.fname, ' ', myreview.lname);
+            // console.log('by ', myreview.fname, ' ', myreview.lname);
             this.review.addReview(this.book_id, myreview);
             this.reviewComment = '';
             this.selectedRating = 0;

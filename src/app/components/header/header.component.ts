@@ -43,7 +43,7 @@ export class HeaderComponent {
       if (user?.uid) {
         this.checkLogin = true;
         this.user.getuser(user?.uid).subscribe((res) => {
-          console.log(res.firstname);
+          // console.log(res.firstname);
           this.userName = res.firstname;
         });
         // console.log("form condition User ID:", user?.uid);

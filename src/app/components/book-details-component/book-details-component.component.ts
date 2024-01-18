@@ -132,7 +132,7 @@ export class BookDetailsComponentComponent implements OnInit {
           cartItems.push(res[i]);
           if (res[i].book_id == this.book_id) {
             flag = false;
-            console.log(res[i].book_id + '  ' + this.book_id);
+            // console.log(res[i].book_id + '  ' + this.book_id);
           }
         }
         if (flag) {

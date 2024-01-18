@@ -28,7 +28,7 @@ export class FavComponent implements OnInit {
           for (let i = 0; i < res.length; i++) {
             this.cartItems.push(res[i]);
          }});
-         console.log("user id form fav",this.user_id) 
+        //  console.log("user id form fav",this.user_id) 
       }
     });
   }
