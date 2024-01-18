@@ -22,7 +22,7 @@ export class ReviewComponentComponent {
     private review: ReviewService,
     private ViewportScroller: ViewportScroller,
     private fire_auth: AuthService,
-    private getuserinfo:UserinfoService
+    private getuserinfo: UserinfoService
   ) {
     this.book_id = bookurl.snapshot.params['id'];
     this.ViewportScroller.scrollToPosition([0, 0]);
@@ -40,6 +40,7 @@ export class ReviewComponentComponent {
       for (let i = 0; i < res.length; i++) {
         this.allreview.push(res[i]);
       }
+      this.allreview.forEach((Element) => console.log(Element));
     });
   }
   reviewComment: string = '';
@@ -53,24 +54,23 @@ export class ReviewComponentComponent {
   setRating(star: number): void {
     this.selectedRating = star;
   }
-  
+
   submitReview(): void {
     if (this.logIn) {
       this.fire_auth.getUser().subscribe((user) => {
-        this.getuserinfo.getuser(user?.uid).subscribe(
-         userdata=>{ this.reviewerfName = userdata.firstname;
-          this.reviewerlName = userdata.lastname;}
-        );
-        
-    
+        this.getuserinfo.getuser(user?.uid).subscribe((userdata) => {
+          this.reviewerfName = userdata.firstname;
+          this.reviewerlName = userdata.lastname;
+        });
       });
       if (this.reviewComment && this.selectedRating > 0) {
         let myreview = {
-          fname:this.reviewerfName,
-          lname:this.reviewerlName,
+          fname: this.reviewerfName,
+          lname: this.reviewerlName,
           comment: this.reviewComment,
           rating: this.selectedRating,
         };
+        console.log('by ', myreview.fname, ' ', myreview.lname);
         this.review.addReview(this.book_id, myreview);
         this.reviewComment = '';
         this.selectedRating = 0;
