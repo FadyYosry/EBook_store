@@ -76,7 +76,6 @@ export class LoginComponent {
     const password = this.loginForm.get('loginPassword')?.value;
 
     this.fire_auth.login(email, password);
-    this.rout.navigate(['/']);
   }
 
   submitSignUpForm() {

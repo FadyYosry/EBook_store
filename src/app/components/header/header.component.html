@@ -95,7 +95,7 @@
           <span class="thepre">{{userName}}</span>
         </div>
 
-        <span class="the_last">Hello ,{{userName}}</span>
+        <span class="the_last" >Hello ,{{userName}}</span>
 
           }
           
@@ -111,7 +111,7 @@
        
           
 
-        <div class="collapse navbar-collapse listp" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse listp" id="navbarSupportedContent" [ngClass]="{'show': !isNavbarCollapsed}">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 list menu">
             <li>
               <form class="d-flex searchh form formm" role="search">
@@ -123,8 +123,8 @@
                 />
                 <i class="fa-solid fa-magnifying-glass sicon"></i>
                 <ul *ngIf="searchTerm" class="menu">
-                  <li class="lista" *ngFor="let book of filterdbooks1">
-                    <a routerLink="details/{{ book.id }}" (click)="remove()"
+                  <li class="lista" *ngFor="let book of filterdbooks1 ">
+                    <a routerLink="details/{{ book.id }}" (click)="remove()"  (click)="toggleNavbar()"
                       >{{ book.title }}
                     </a>
                   </li>
@@ -132,25 +132,25 @@
               </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink=""
+              <a class="nav-link active" aria-current="page" routerLink=""  (click)="toggleNavbar()"
                 >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="details" (click)="goToAddToCart()"
+              <a class="nav-link" routerLink="details" (click)="goToAddToCart()"  (click)="toggleNavbar()"
                 >Cart</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="details" (click)="goToAddToFav()"
+              <a class="nav-link" routerLink="details" (click)="goToAddToFav()"  (click)="toggleNavbar()"
                 >Favorite</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="about_us">About Us</a>
+              <a class="nav-link" routerLink="about_us"  (click)="toggleNavbar()">About Us</a> 
             </li>
             <li class="nav-item logg" (click)=" logout()">
-              <button style="background-color: transparent; border: transparent ; font-weight: bold;"><a class="nav-link" >LogOut</a></button>
+              <button style="background-color: transparent; border: transparent ; font-weight: bold;"><a class="nav-link"  (click)="toggleNavbar()" >LogOut</a></button>
             </li>
            
 
@@ -181,6 +181,7 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          (click)="toggleNavbar()"
         >
           <span class="hola"><i class="fa-solid fa-bars"></i> </span>
         </button>
