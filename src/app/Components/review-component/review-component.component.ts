@@ -48,8 +48,6 @@ export class ReviewComponentComponent {
   selectedRating: number = 0;
   savedReviews: { comment: string; rating: number }[] = [];
   errorMessage: string = '';
-  reviewerfName: string = '';
-  reviewerlName: string = '';
 
   setRating(star: number): void {
     this.selectedRating = star;
@@ -59,25 +57,24 @@ export class ReviewComponentComponent {
     if (this.logIn) {
       this.fire_auth.getUser().subscribe((user) => {
         this.getuserinfo.getuser(user?.uid).subscribe((userdata) => {
-          this.reviewerfName = userdata.firstname;
-          this.reviewerlName = userdata.lastname;
+          if (this.reviewComment && this.selectedRating > 0) {
+            let myreview = {
+              fname: userdata.firstname,
+              lname: userdata.lastname,
+              comment: this.reviewComment,
+              rating: this.selectedRating,
+            };
+            console.log('by ', myreview.fname, ' ', myreview.lname);
+            this.review.addReview(this.book_id, myreview);
+            this.reviewComment = '';
+            this.selectedRating = 0;
+            this.errorMessage = '';
+          } else {
+            this.errorMessage = 'Please enter both a comment and a rating.';
+          }
         });
       });
-      if (this.reviewComment && this.selectedRating > 0) {
-        let myreview = {
-          fname: this.reviewerfName,
-          lname: this.reviewerlName,
-          comment: this.reviewComment,
-          rating: this.selectedRating,
-        };
-        console.log('by ', myreview.fname, ' ', myreview.lname);
-        this.review.addReview(this.book_id, myreview);
-        this.reviewComment = '';
-        this.selectedRating = 0;
-        this.errorMessage = '';
-      } else {
-        this.errorMessage = 'Please enter both a comment and a rating.';
-      }
+     
     } else {
       alert('Please login to review');
     }
