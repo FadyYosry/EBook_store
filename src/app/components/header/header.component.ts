@@ -12,7 +12,7 @@ import { UserinfoService } from '../../Services/user/userinfo.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, ApplicationModule],
+  imports: [RouterModule, CommonModule, FormsModule, ApplicationModule ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -23,12 +23,16 @@ export class HeaderComponent {
   user_id: any;
   checkLogin: boolean = false;
   userName: string = '';
+  isNavbarCollapsed = true;
   constructor(
     private serve: AllBooksService,
     private router: Router,
     private fire_auth: AuthService,
-    private user: UserinfoService
+    private user: UserinfoService,
+    
   ) {}
+
+
 
   ngOnInit(): void {
     // this.fire_auth.logout();
@@ -50,6 +54,12 @@ export class HeaderComponent {
       this.allbooks = data;
     });
   }
+  
+
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
   goToAddToCart() {
     this.router.navigate(['/add-to-cart']);
   }
